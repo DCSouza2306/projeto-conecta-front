@@ -1,13 +1,13 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Modal from "react-modal";
-import { Home } from "./pages/Home";
-Modal.setAppElement("#root")
+import { Home } from "./pages/Home/index";
+import { Explore } from "./pages/Explore";
 
 function App() {
  return (
   <BrowserRouter>
    <Routes>
     <Route path="/" element={<Home />} />
+    <Route path="/explore" element={<Explore />} />
    </Routes>
   </BrowserRouter>
  );

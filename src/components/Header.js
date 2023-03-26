@@ -1,7 +1,12 @@
 import styled from "styled-components";
 import { AiFillApi } from "react-icons/ai";
+import { useNavigate } from "react-router-dom";
 
 export function Header() {
+    const navigate = useNavigate()
+    function changePage(dist){
+        navigate(`/${dist}`)
+    }
  return (
   <HeaderDiv>
    <div className="logo-image">
@@ -9,8 +14,8 @@ export function Header() {
     <AiFillApi color="#FFF" />
    </div>
    <div className="menu">
-    <button>Pagina Inicial</button>
-    <button>Explorar</button>
+    <button onClick={() => changePage("")}>Pagina Inicial</button>
+    <button onClick={() => changePage("explore")}>Explorar</button>
     <button>Meus Grupos</button>
     <button>Entrar / Cadastrar</button>
    </div>

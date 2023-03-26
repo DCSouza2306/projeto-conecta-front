@@ -1,6 +1,6 @@
-import { Header } from "../components/Header";
+import { Header } from "../../components/Header";
 import styled from "styled-components";
-import imagem from "../assets/images/people-reading.jpg";
+import imagem from "../../assets/images/people-reading.jpg";
 
 export function Home() {
  return (
@@ -10,7 +10,7 @@ export function Home() {
     <h2>Se conecte nesse mundo fantástico</h2>
     <h3>Diversos clubes de leitura em um único lugar</h3>
    </div>
-   <img src={imagem} />
+   <img src={imagem} alt="people reading"/>
   </HomeDiv>
  );
 }
@@ -19,8 +19,8 @@ const HomeDiv = styled.div`
  display: flex;
  flex-direction: column;
  img{
-  height: 900px;
-  width: 1000px;
+  height: 400px;
+  width: 900px;
   margin: 0 auto;
  }
 
