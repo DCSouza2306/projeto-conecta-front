@@ -9,10 +9,10 @@ export function Header() {
     <AiFillApi color="#FFF" />
    </div>
    <div className="menu">
-    <p>Pagina Inicial</p>
-    <p>Explorar</p>
-    <p>Meus Grupos</p>
-    <p>Entrar / Cadastrar</p>
+    <button>Pagina Inicial</button>
+    <button>Explorar</button>
+    <button>Meus Grupos</button>
+    <button>Entrar / Cadastrar</button>
    </div>
   </HeaderDiv>
  );
@@ -41,9 +41,18 @@ const HeaderDiv = styled.div`
 
  .menu {
   display: flex;
-  font-size: 18px;
-  p{
+  font-size: 22px;
+  button{
    margin-right: 50px;
+   font-size: 22px;
+   border: none;
+   color: #fff;
+   background-color: transparent;
+   :hover {
+    cursor: pointer;
+    text-decoration: underline;
+   }
+  
   };
   margin-right: 50px;
  }
