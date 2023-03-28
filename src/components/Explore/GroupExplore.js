@@ -1,7 +1,12 @@
 import styled from "styled-components";
 import { AiFillCheckCircle } from "react-icons/ai";
+import { useNavigate } from "react-router-dom";
 
 export function GroupExplore() {
+ const navigate = useNavigate();
+ function navigateGroup() {
+  navigate("/groupId");
+ }
  return (
   <GroupExploreDiv>
    <div className="image-text-group-explore">
@@ -10,7 +15,7 @@ export function GroupExplore() {
      alt="livro"
     />
     <div className="text-group-explore">
-     <h3>Grupo de Fantasia</h3>
+     <h3 onClick={() => navigateGroup()}>Grupo de Fantasia</h3>
      <p>Grupo de leitura de fantasia medieval</p>
     </div>
    </div>
@@ -46,6 +51,7 @@ const GroupExploreDiv = styled.div`
    h3 {
     font-size: 32px;
     margin-bottom: 30px;
+    cursor: pointer;
    }
 
    p {
@@ -56,17 +62,17 @@ const GroupExploreDiv = styled.div`
  }
 
  .group-status-explore {
-    height: 100%;
-    align-items: center;
-    display: flex;
-    color: #8AB799;
-    p{
-        font-size: 24px;
-    }
+  height: 100%;
+  align-items: center;
+  display: flex;
+  color: #8ab799;
+  p {
+   font-size: 24px;
+  }
 
-    .icon-open-explore{
-        font-size: 40px;
-        margin-right: 20px;
-    }
+  .icon-open-explore {
+   font-size: 40px;
+   margin-right: 20px;
+  }
  }
 `;

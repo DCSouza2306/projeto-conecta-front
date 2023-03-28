@@ -8,7 +8,7 @@ export function Header() {
         navigate(`/${dist}`)
     }
  return (
-  <HeaderDiv>
+  <HeaderHead>
    <div className="logo-image">
     <p>Conecta</p>
     <AiFillApi color="#FFF" />
@@ -19,17 +19,22 @@ export function Header() {
     <button>Meus Grupos</button>
     <button>Entrar / Cadastrar</button>
    </div>
-  </HeaderDiv>
+  </HeaderHead>
  );
 }
 
-const HeaderDiv = styled.div`
- height: 120px;
+const HeaderHead = styled.header`
+ height: 100px;
+ width: 100%;
  background-color: #8e82d9;
  color: #fff;
  display: flex;
  align-items: center;
  justify-content: space-between;
+ position: fixed;
+ top: 0;
+ right: 0;
+ z-index: 1;
 
  .logo-image {
   font-family: "Black And White Picture", sans-serif;
