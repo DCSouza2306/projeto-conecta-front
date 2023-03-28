@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import Box from "../Box";
-import { BookTitleAndDate } from "./BookTitleAndDate";
+import Box from "../../Box";
+import { BookTitleAndDate } from "../BookTitleAndDate";
 
 export function CurrentBook() {
  return (

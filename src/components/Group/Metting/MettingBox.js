@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import Box from "../Box";
-import ButtonStyled from "../ButtonStyled";
+import Box from "../../Box";
+import ButtonStyled from "../../ButtonStyled";
 
 export function MettingBox(){
     return (

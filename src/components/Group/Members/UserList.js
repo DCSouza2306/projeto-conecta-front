@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import ButtonStyled from "../ButtonStyled";
+import ButtonStyled from "../../ButtonStyled";
 import { User } from "./User";
 
 export function UserList(){

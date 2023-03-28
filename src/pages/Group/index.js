@@ -1,13 +1,13 @@
 import styled from "styled-components";
 import { Header } from "../../components/Header/Header";
-import { About } from "../../components/Group/About";
-import { CurrentReading } from "../../components/Group/CurrentReading";
-import { Metting } from "../../components/Group/Metting";
+import { About } from "../../components/Group/About/About";
+import { CurrentReading } from "../../components/Group/CurrentBook/CurrentReading";
+import { Metting } from "../../components/Group/Metting/Metting";
 import ButtonStyled from "../../components/ButtonStyled";
-import { NextReadings } from "../../components/Group/NextReadings";
+import { NextReadings } from "../../components/Group/NextReadings/NextReadings";
 import Container from "../../components/Container";
-import { Link } from "../../components/Group/Link";
-import { UserList } from "../../components/Group/UserList";
+import { Link } from "../../components/Group/Links/Link";
+import { UserList } from "../../components/Group/Members/UserList";
 
 export function Group() {
  return (

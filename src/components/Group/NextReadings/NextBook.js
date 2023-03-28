@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { BookTitleAndDate } from "./BookTitleAndDate";
+import { BookTitleAndDate } from "../BookTitleAndDate";
 
 export function NextBook() {
  return (
