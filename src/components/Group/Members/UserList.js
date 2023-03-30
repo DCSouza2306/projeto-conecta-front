@@ -30,7 +30,7 @@ flex-direction: column;
 justify-content: space-around;
 align-items: center;
 h3{
-
+    margin-bottom: 20px;
     font-size: 28px;
     font-weight: 500;
     align-self: flex-start;

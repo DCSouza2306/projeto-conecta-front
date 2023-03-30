@@ -34,7 +34,7 @@ export function Group() {
 
    <ContainerSecond>
     <NextReadings />
-    <div className="line" />
+    <div className="line-second" />
     <div>
      <Link />
      <UserList />
@@ -46,6 +46,12 @@ export function Group() {
 
 const ContainerSecond = styled(Container)`
  display: flex;
+ .line-second {
+  margin-top: 70px;
+  width: 1px;
+  height: 680px;
+  background-color: #9795a6;
+ }
 `;
 
 const GroupPage = styled.div`
@@ -71,8 +77,6 @@ const GroupPage = styled.div`
 
  .reading-metting {
   display: flex;
-  width: 1240px;
-  margin: 0 auto;
 
   .line {
    margin-top: 70px;

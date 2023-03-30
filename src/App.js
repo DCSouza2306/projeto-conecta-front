@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Home } from "./pages/Home/index";
-import { Explore } from "./pages/Explore";
+import { Explore } from "./pages/Explore/index";
 import { Group } from "./pages/Group";
 
 function App() {

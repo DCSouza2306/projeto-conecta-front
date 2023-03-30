@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { AiFillCheckCircle } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 
-export function GroupExplore() {
+export function GroupExplore({ id, name, description, urlImage, status }) {
  const navigate = useNavigate();
  function navigateGroup() {
   navigate("/groupId");
@@ -10,18 +10,15 @@ export function GroupExplore() {
  return (
   <GroupExploreDiv>
    <div className="image-text-group-explore">
-    <img
-     src="https://ayine.com.br/wp-content/uploads/2022/03/Miolo-diagonal-O-livro-dos-amigos-site.png"
-     alt="livro"
-    />
+    <img src={urlImage} />
     <div className="text-group-explore">
-     <h3 onClick={() => navigateGroup()}>Grupo de Fantasia</h3>
-     <p>Grupo de leitura de fantasia medieval</p>
+     <h3 onClick={() => navigateGroup()}>{name}</h3>
+     <p>{description}</p>
     </div>
    </div>
    <div className="group-status-explore">
     <AiFillCheckCircle className="icon-open-explore" />
-    <p>Open</p>
+    <p>{status == "OPEN" ? "Aberto" : "Fechado"}</p>
    </div>
   </GroupExploreDiv>
  );
