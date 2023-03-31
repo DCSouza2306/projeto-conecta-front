@@ -17,7 +17,7 @@ import { Loading } from "../../components/Loading";
 export function Group() {
  const { groupId } = useParams();
  const { groupIdData, groupIdLoading, groupIdError } = useGroupId(groupId);
- const { setGroupData, refresh, groupData } = useContext(GroupContext);
+ const { setGroupData, groupData } = useContext(GroupContext);
 
  useEffect(() => {
   setGroupData(groupIdData);

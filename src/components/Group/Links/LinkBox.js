@@ -1,11 +1,18 @@
+import { useContext } from "react";
 import styled from "styled-components";
+import GroupContext from "../../../context/groupContext";
 import Box from "../../Box";
 
 export function LinkBox() {
- return <LinkBoxDiv>
- <p>Instagram</p>
- <p>Whatsapp</p>
- </LinkBoxDiv>;
+ const { groupData } = useContext(GroupContext);
+ const links = groupData?.Links;
+ return (
+  <LinkBoxDiv>
+   {links?.map((e) => {
+      return <p>{e.url}</p>
+   })}
+  </LinkBoxDiv>
+ );
 }
 
 const LinkBoxDiv = styled(Box)`
@@ -14,9 +21,9 @@ const LinkBoxDiv = styled(Box)`
  height: 190px;
  padding: 30px;
  margin-top: 30px;
- 
- p{
-    margin-bottom: 20px;
-    cursor: pointer;
+
+ p {
+  margin-bottom: 20px;
+  cursor: pointer;
  }
 `;

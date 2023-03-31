@@ -1,16 +1,26 @@
+import { useContext } from "react";
 import styled from "styled-components";
+import GroupContext from "../../../context/groupContext";
 import ButtonStyled from "../../ButtonStyled";
 import { User } from "./User";
 
 export function UserList(){
+    const {groupData} = useContext(GroupContext);
+    const members = groupData?.Members
     return(
         <UserListDiv>
             <h3>Membros</h3>
-            <User />
-            <User />
-            <User />
-            <User />
-            <User />
+            {members?.map((e) => {
+                return(
+                    <User
+                    key={e.id}
+                    id={e.id}
+                    name={e.name}
+                    urlImage={e.urlImage}
+                    position={e.position}
+                     />
+                )
+            })}
             <ButtonShowUser>Exibir todos</ButtonShowUser>
         </UserListDiv>
     )
