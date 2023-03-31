@@ -1,5 +1,5 @@
-import { groupApi } from "../services/groupApi";
-import useAsync  from "./useAsync";
+import { groupApi } from "../../services/groupApi";
+import useAsync  from "../useAsync";
 
 export function useGroups() {
 

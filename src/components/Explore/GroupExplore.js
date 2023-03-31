@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 export function GroupExplore({ id, name, description, urlImage, status }) {
  const navigate = useNavigate();
  function navigateGroup() {
-  navigate("/groupId");
+  navigate(`/explore/${id}`);
  }
  return (
   <GroupExploreDiv>

@@ -5,4 +5,9 @@ async function getGroups() {
  return response.data
 }
 
-export const groupApi = { getGroups };
+async function getGroupById(id) {
+    const response = await api.get(`/group/${id}`);
+    return response.data
+}
+
+export const groupApi = { getGroups, getGroupById };

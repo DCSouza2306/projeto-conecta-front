@@ -8,38 +8,53 @@ import { NextReadings } from "../../components/Group/NextReadings/NextReadings";
 import Container from "../../components/Container";
 import { Link } from "../../components/Group/Links/Link";
 import { UserList } from "../../components/Group/Members/UserList";
+import { useParams } from "react-router-dom";
+import { useGroupId } from "../../hooks/api/useGroupId";
+import { useContext, useEffect } from "react";
+import GroupContext from "../../context/groupContext";
+import { Loading } from "../../components/Loading";
 
 export function Group() {
+ const { groupId } = useParams();
+ const { groupIdData, groupIdLoading, groupIdError } = useGroupId(groupId);
+ const { setGroupData, refresh, groupData } = useContext(GroupContext);
+
+ useEffect(() => {
+  setGroupData(groupIdData);
+ }, [groupIdLoading]);
  return (
   <GroupPage>
-   <Header />
-   <Container>
-    <div className="image-name-group">
-     <img
-      src="https://ayine.com.br/wp-content/uploads/2022/03/Miolo-diagonal-O-livro-dos-amigos-site.png"
-      alt="livro"
-     />
-     <h2>Grupo de Fantasia</h2>
-     <ButtonRequest>Solicitar</ButtonRequest>
-    </div>
+    <Header />
+   {(groupIdLoading || groupIdError) ? (
+    <LoadingGroup />
+   ) : (
+    <section>
+     <Container>
+      <div className="image-name-group">
+       <img src={groupData?.urlImage} alt="livro" />
+       <h2>{groupData?.name}</h2>
+       <ButtonRequest>Solicitar</ButtonRequest>
+      </div>
 
-    <About />
+      <About />
 
-    <div className="reading-metting">
-     <CurrentReading />
-     <div className="line" />
-     <Metting />
-    </div>
-   </Container>
+      <div className="reading-metting">
+       <CurrentReading />
+       <div className="line" />
+       <Metting />
+      </div>
+     </Container>
 
-   <ContainerSecond>
-    <NextReadings />
-    <div className="line-second" />
-    <div>
-     <Link />
-     <UserList />
-    </div>
-   </ContainerSecond>
+     <ContainerSecond>
+      <NextReadings />
+      <div className="line-second" />
+      <div>
+       <Link />
+       <UserList />
+      </div>
+     </ContainerSecond>
+    </section>
+   )}
   </GroupPage>
  );
 }
@@ -92,3 +107,7 @@ const ButtonRequest = styled(ButtonStyled)`
  font-size: 32px;
  height: 90px;
 `;
+
+const LoadingGroup = styled(Loading)`
+   background-color: red;
+`

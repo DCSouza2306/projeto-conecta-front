@@ -4,6 +4,7 @@ import imagem from "../../assets/images/people-reading.jpg";
 import Container from "../../components/Container";
 
 export function Home() {
+
  return (
   <HomeDiv>
    <Header />

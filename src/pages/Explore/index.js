@@ -2,33 +2,33 @@ import styled from "styled-components";
 import { Header } from "../../components/Header/Header";
 import { GroupExplore } from "../../components/Explore/GroupExplore";
 import Container from "../../components/Container";
-import { useGroups } from "../../hooks/useGroups";
+import { useGroups } from "../../hooks/api/useGroups";
+import { Loading } from "../../components/Loading";
 
 export function Explore() {
- const { getGroups, groupsData, groupsLoading } = useGroups();
- console.log(groupsData);
+ const { groupsData, groupsLoading, groupsError } = useGroups();
  return (
   <ExploreDiv>
    <Header />
-   <Container>
-    <h2>Explore todos os grupos</h2>
-    {groupsLoading ? (
-     <p>Carregando</p>
-    ) : (
-     groupsData.map((e) => {
-      return (
-       <GroupExplore
-        key={e.id}
-        id={e.id}
-        name={e.name}
-        description={e.description}
-        urlImage={e.urlImage}
-        status={e.status}
-       />
-      );
-     })
-    )}
-   </Container>
+   {groupsLoading || groupsError ? (
+    <Loading />
+   ) : (
+    <Container>
+     <h2>Explore todos os grupos</h2>
+      {groupsData.map((e) => {
+       return (
+        <GroupExplore
+         key={e.id}
+         id={e.id}
+         name={e.name}
+         description={e.description}
+         urlImage={e.urlImage}
+         status={e.status}
+        />
+       );
+      })}
+    </Container>
+   )}
   </ExploreDiv>
  );
 }

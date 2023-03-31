@@ -1,18 +1,24 @@
+import { useContext } from "react";
 import styled from "styled-components";
+import GroupContext from "../../../context/groupContext";
 import Box from "../../Box";
 import { BookTitleAndDate } from "../BookTitleAndDate";
+import dayjs from "dayjs";
 
 export function CurrentBook() {
+ const { groupData } = useContext(GroupContext);
+ const currentBook = groupData?.CurrentReading;
+
  return (
   <CurrentBookDiv>
-   <img src="https://m.media-amazon.com/images/I/81zN7udGRUL.jpg" alt="livro" />
+   <img src={currentBook?.urlImage} alt="livro" />
    <div className="book-informations">
     <BookTitleAndDate>
      <div>
-      <p>Duna</p>
-      <p>Frank Hebert</p>
+      <p>{currentBook?.title}</p>
+      <p>{currentBook?.author}</p>
      </div>
-     <p> 24/05 a 24/06</p>
+     <p> {`${dayjs(currentBook?.start).format("DD/MM")} a ${dayjs(currentBook?.finish).format("DD/MM/YYYY")}`}</p>
     </BookTitleAndDate>
     <div className="book-informations-bottom">
      A vida do jovem Paul Atreides está prestes a mudar radicalmente. Após a
@@ -29,13 +35,14 @@ export function CurrentBook() {
 }
 
 const CurrentBookDiv = styled(Box)`
-margin-top: 30px;
+ margin-top: 30px;
  width: 785px;
  height: 330px;
  align-items: center;
  justify-content: center;
  img {
   width: 160px;
+  height: 230px; 
   border-radius: 5px;
   margin-right: 40px;
  }
@@ -45,6 +52,6 @@ margin-top: 30px;
   text-align: justify;
   width: 500px;
   overflow: hidden;
-  height: 11ch;
+  height: 10ch;
  }
 `;

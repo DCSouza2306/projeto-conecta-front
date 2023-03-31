@@ -1,17 +1,18 @@
 import styled from "styled-components";
 import { BookTitleAndDate } from "../BookTitleAndDate";
+import dayjs from "dayjs";
 
-export function NextBook() {
+export function NextBook({id, urlImage, title, author, start, finish}) {
+
  return (
   <NextBookDiv>
-   {" "}
-   <img src="https://m.media-amazon.com/images/I/81zN7udGRUL.jpg" alt="livro" />
+   <img src={urlImage} alt="livro" />
    <BookTitleAndDate>
     <div>
-     <p>Duna</p>
-     <p>Frank Hebert</p>
+     <p>{title}</p>
+     <p>{author}</p>
     </div>
-    <p> 24/05 a 24/06</p>
+    <p>{`${dayjs(start).format("DD/MM")} a ${dayjs(finish).format("DD/MM/YYYY")}`}</p>
    </BookTitleAndDate>
   </NextBookDiv>
  );
@@ -28,6 +29,7 @@ const NextBookDiv = styled.div`
 
  img {
   height: 120px;
+  width: 80px;
   border-radius: 5px;
  }
 `;

@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
 
-export default function useAsync(handler, isLoading = true) {
+export default function useAsync(handler, loadNow = true) {
  const [data, setData] = useState(null);
  const [error, setError] = useState(null);
- const [loading, setLoading] = useState(isLoading);
+ const [loading, setLoading] = useState(loadNow);
 
- const task = async (...args) => {
+ async function task(...args) {
   setLoading(true);
+  setData(null);
   try {
    const data = await handler(...args);
    setData(data);
@@ -17,10 +18,10 @@ export default function useAsync(handler, isLoading = true) {
    setLoading(false);
    throw err;
   }
- };
+ }
 
  useEffect(() => {
-  if (isLoading) {
+  if (loadNow) {
    task();
   }
  }, []);
