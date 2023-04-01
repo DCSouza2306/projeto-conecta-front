@@ -34,3 +34,5 @@ const NextReadingsBoxDiv = styled(Box)`
  display: flex;
  flex-direction: column;
 `;
+
+export default NextReadingsBoxDiv;

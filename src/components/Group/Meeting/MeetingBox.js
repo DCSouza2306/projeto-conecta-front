@@ -5,43 +5,42 @@ import GroupContext from "../../../context/groupContext";
 import Box from "../../Box";
 import ButtonStyled from "../../ButtonStyled";
 
-export function MettingBox() {
+export function MeetingBox() {
  const { groupData } = useContext(GroupContext);
 
  const meeting = groupData?.Meeting;
- console.log(meeting);
  return (
-  <MettingBoxDiv>
-   <div className="metting-informations">
+  <MeetingBoxDiv>
+   <div className="meeting-informations">
     <p>Data</p>
     <p>{dayjs(meeting?.date).format("DD/MM/YYYY")}</p>
    </div>
-   <div className="metting-informations">
+   <div className="meeting-informations">
     <p>Horario</p>
     <p>{dayjs(meeting?.hour).format("HH:mm")}</p>
    </div>
-   <div className="metting-informations">
+   <div className="meeting-informations">
     <p>Link</p>
     <p>{meeting?.url}</p>
    </div>
-   <div className="metting-informations">
+   <div className="meeting-informations">
     <p>Mediador</p>
     <p>Usuario</p>
    </div>
 
-   <ButtonConfirmMetting>Confirmar Participação</ButtonConfirmMetting>
-  </MettingBoxDiv>
+   <ButtonConfirmmeeting>Confirmar Participação</ButtonConfirmmeeting>
+  </MeetingBoxDiv>
  );
 }
 
-const MettingBoxDiv = styled(Box)`
+const MeetingBoxDiv = styled(Box)`
  width: 365px;
  flex-direction: column;
  height: 330px;
- padding: 30px;
- margin-top: 30px;
+ padding: 1.8rem;
+ margin-top: 1.8rem;
 
- .metting-informations {
+ .meeting-informations {
   display: flex;
   justify-content: space-between;
   font-size: 20px;
@@ -55,8 +54,10 @@ const MettingBoxDiv = styled(Box)`
  }
 `;
 
-const ButtonConfirmMetting = styled(ButtonStyled)`
+const ButtonConfirmmeeting = styled(ButtonStyled)`
  width: 285px;
  height: 50px;
  font-size: 20px;
 `;
+
+export default MeetingBoxDiv;

@@ -33,7 +33,7 @@ export function CurrentBook() {
 }
 
 const CurrentBookDiv = styled(Box)`
- margin-top: 30px;
+ margin-top: 1.8rem;
  width: 785px;
  height: 330px;
  align-items: center;
@@ -53,3 +53,5 @@ const CurrentBookDiv = styled(Box)`
   height: 10ch;
  }
 `;
+
+export default CurrentBookDiv;

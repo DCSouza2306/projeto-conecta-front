@@ -4,8 +4,8 @@ import GroupContext from "../../../context/groupContext";
 import Box from "../../Box";
 
 export function LinkBox() {
- const { groupData } = useContext(GroupContext);
- const links = groupData?.Links;
+   const { groupData } = useContext(GroupContext);
+   const links = groupData?.Links;
  return (
   <LinkBoxDiv>
    {links?.map((e) => {
@@ -27,3 +27,5 @@ const LinkBoxDiv = styled(Box)`
   cursor: pointer;
  }
 `;
+
+export default LinkBoxDiv;

@@ -15,7 +15,7 @@ display: flex;
 align-items: center;
 justify-content: space-between;
 width: 350px;
-
+margin-bottom: 1.5rem;
 img{
     border-radius: 100%;
     width: 60px;

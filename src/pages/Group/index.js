@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Header } from "../../components/Header/Header";
 import { About } from "../../components/Group/About/About";
 import { CurrentReading } from "../../components/Group/CurrentBook/CurrentReading";
-import { Metting } from "../../components/Group/Metting/Metting";
+import { Meeting } from "../../components/Group/Meeting/Meeting";
 import ButtonStyled from "../../components/ButtonStyled";
 import { NextReadings } from "../../components/Group/NextReadings/NextReadings";
 import Container from "../../components/Container";
@@ -38,10 +38,10 @@ export function Group() {
 
       <About />
 
-      <div className="reading-metting">
+      <div className="reading-meeting">
        <CurrentReading />
        <div className="line" />
-       <Metting />
+       <Meeting />
       </div>
      </Container>
 
@@ -90,7 +90,7 @@ const GroupPage = styled.div`
   }
  }
 
- .reading-metting {
+ .reading-meeting {
   display: flex;
 
   .line {

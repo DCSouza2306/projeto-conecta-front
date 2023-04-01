@@ -1,29 +1,29 @@
 import { useContext } from "react";
 import styled from "styled-components";
 import GroupContext from "../../../context/groupContext";
-import { LinkBox } from "./LinkBox";
-import { NoLinks } from "./NoLinks";
+import { MeetingBox } from "./MeetingBox";
+import { NoMeeting } from "./NoMeeting";
 
-export function Link() {
+export function Meeting() {
  const { groupData } = useContext(GroupContext);
- const links = groupData?.Links;
+
+ const meeting = groupData?.Meeting;
  return (
-  <LinkDiv>
-   <h3>Links</h3>
-   {links?.id == undefined ? <NoLinks /> : <LinkBox url={links} />}
-  </LinkDiv>
+  <MeetingDiv>
+   <h3>Encontro</h3>
+   {meeting?.id == undefined ? <NoMeeting /> : <MeetingBox />}
+  </MeetingDiv>
  );
 }
 
-const LinkDiv = styled.div`
+const MeetingDiv = styled.div`
+ margin-top: 30px;
  width: 410px;
- height: 350px;
  display: flex;
  flex-direction: column;
  align-items: flex-end;
-
  h3 {
-  margin-top: 30px;
+  margin-top: 20px;
   font-size: 28px;
   font-weight: 500;
   align-self: flex-start;

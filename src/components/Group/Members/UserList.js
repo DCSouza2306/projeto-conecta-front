@@ -10,6 +10,7 @@ export function UserList(){
     return(
         <UserListDiv>
             <h3>Membros</h3>
+            <div className="members-list">
             {members?.map((e) => {
                 return(
                     <User
@@ -21,7 +22,9 @@ export function UserList(){
                      />
                 )
             })}
-            <ButtonShowUser>Exibir todos</ButtonShowUser>
+            </div>
+            {members?.length > 4 ? <ButtonShowUser>Exibir todos</ButtonShowUser> : <></>}
+            
         </UserListDiv>
     )
 }
@@ -37,7 +40,6 @@ height: 450px;
 width: 410px;
 display: flex;
 flex-direction: column;
-justify-content: space-around;
 align-items: center;
 h3{
     margin-bottom: 20px;
@@ -45,5 +47,10 @@ h3{
     font-weight: 500;
     align-self: flex-start;
     padding-left: 50px;
+}
+
+.members-list{
+    height: 350px;
+    width: 350px;
 }
 `

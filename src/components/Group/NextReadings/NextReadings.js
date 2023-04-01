@@ -1,12 +1,19 @@
+import { useContext } from "react";
 import styled from "styled-components";
+import GroupContext from "../../../context/groupContext";
 import { NextReadingsBox } from "./NextReadingsBox";
+import { NoNextReadings } from "./NoNextReadings";
 
 
 export function NextReadings(){
+    const { groupData } = useContext(GroupContext);
+    const nextReadings = groupData?.NextReadings;
+    console.log(nextReadings);
     return(
         <NextReadingsDiv>
             <h3>Proximas leituras</h3>
-            <NextReadingsBox />
+            {nextReadings?.length > 0 ?   <NextReadingsBox />  : <NoNextReadings/>}
+          
         </NextReadingsDiv>
     )
 }
