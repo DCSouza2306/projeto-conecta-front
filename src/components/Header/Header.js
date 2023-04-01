@@ -16,7 +16,7 @@ export function Header() {
    <div className="menu">
     <button onClick={() => changePage("")}>Pagina Inicial</button>
     <button onClick={() => changePage("explore")}>Explorar</button>
-    <button>Livros</button>
+    <button onClick={() => changePage("books")}>Livros</button>
     <button>Entrar / Cadastrar</button>
    </div>
   </HeaderHead>

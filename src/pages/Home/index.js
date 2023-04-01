@@ -6,7 +6,7 @@ import Container from "../../components/Container";
 export function Home() {
 
  return (
-  <HomeDiv>
+  <HomeSection>
    <Header />
    <ContainerHome>
     <div className="text-home">
@@ -15,7 +15,7 @@ export function Home() {
     </div>
     <img src={imagem} alt="people reading" />
    </ContainerHome>
-  </HomeDiv>
+  </HomeSection>
  );
 }
 
@@ -24,7 +24,7 @@ display: flex;
 flex-direction: column;
 align-items: center;
 `
-const HomeDiv = styled.div`
+const HomeSection = styled.section`
  height: 100vh;
  display: flex;
  flex-direction: column;

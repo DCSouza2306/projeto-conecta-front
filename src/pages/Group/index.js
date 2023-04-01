@@ -23,7 +23,7 @@ export function Group() {
   setGroupData(groupIdData);
  }, [groupIdLoading]);
  return (
-  <GroupPage>
+  <GroupSection>
     <Header />
    {(groupIdLoading || groupIdError) ? (
     <LoadingGroup />
@@ -55,7 +55,7 @@ export function Group() {
      </ContainerSecond>
     </section>
    )}
-  </GroupPage>
+  </GroupSection>
  );
 }
 
@@ -69,7 +69,7 @@ const ContainerSecond = styled(Container)`
  }
 `;
 
-const GroupPage = styled.div`
+const GroupSection = styled.section`
  display: flex;
  flex-direction: column;
  align-items: center;

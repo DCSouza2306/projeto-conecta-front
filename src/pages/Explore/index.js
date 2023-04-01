@@ -8,7 +8,7 @@ import { Loading } from "../../components/Loading";
 export function Explore() {
  const { groupsData, groupsLoading, groupsError } = useGroups();
  return (
-  <ExploreDiv>
+  <ExploreSection>
    <Header />
    {groupsLoading || groupsError ? (
     <Loading />
@@ -29,15 +29,15 @@ export function Explore() {
       })}
     </Container>
    )}
-  </ExploreDiv>
+  </ExploreSection>
  );
 }
 
-const ExploreDiv = styled.div`
+const ExploreSection = styled.section`
  h2 {
   margin-top: 60px;
-  margin-bottom: 30px;
-  font-size: 48px;
+  margin-bottom: 1.8rem;
+  font-size: 3rem;
   text-align: center;
  }
 `;

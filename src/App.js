@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Home } from "./pages/Home/index";
 import { Explore } from "./pages/Explore/index";
 import { Group } from "./pages/Group";
+import { Books } from "./pages/Books";
 
 function App() {
  return (
@@ -10,6 +11,7 @@ function App() {
     <Route path="/" element={<Home />} />
     <Route path="/explore" element={<Explore />} />
     <Route path="/explore/:groupId" element={<Group />} />
+    <Route path="/books" element={<Books />} />
    </Routes>
   </BrowserRouter>
  );

@@ -11,7 +11,7 @@ export function Meeting() {
  return (
   <MeetingDiv>
    <h3>Encontro</h3>
-   {meeting?.id == undefined ? <NoMeeting /> : <MeetingBox />}
+   {meeting?.id === undefined ? <NoMeeting /> : <MeetingBox />}
   </MeetingDiv>
  );
 }
