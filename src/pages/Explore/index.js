@@ -35,7 +35,7 @@ export function Explore() {
 
 const ExploreSection = styled.section`
  h2 {
-  margin-top: 60px;
+  margin-top: 3rem;
   margin-bottom: 1.8rem;
   font-size: 3rem;
   text-align: center;

@@ -1,17 +1,17 @@
 import styled from "styled-components";
 
-export function Book(){
+export function Book({id, urlImage, author, title}){
     return (
         <BookDiv>
-            <img src="https://m.media-amazon.com/images/I/81ibfYk4qmL.jpg" alt="Livro" />
-            <p className="book-list-title">Memoria postumas </p>
-            <p className="book-list-author">Autor do Livro</p>
+            <img src={urlImage} alt="Livro" />
+            <p className="book-list-title">{title} </p>
+            <p className="book-list-author">{author}</p>
         </BookDiv>
     )
 }
 
 const BookDiv = styled.div`
-margin-top: 1rem;
+margin-top: 0.5rem;
 margin-left: 1.45rem;
 width: 150px;
 height: 320px;

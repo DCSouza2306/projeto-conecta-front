@@ -11,7 +11,7 @@ function App() {
     <Route path="/" element={<Home />} />
     <Route path="/explore" element={<Explore />} />
     <Route path="/explore/:groupId" element={<Group />} />
-    <Route path="/books" element={<Books />} />
+    <Route path="/books/offset?/limit?" element={<Books />} />
    </Routes>
   </BrowserRouter>
  );

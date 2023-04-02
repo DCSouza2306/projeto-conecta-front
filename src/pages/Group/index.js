@@ -15,6 +15,7 @@ import GroupContext from "../../context/groupContext";
 import { Loading } from "../../components/Loading";
 
 export function Group() {
+
  const { groupId } = useParams();
  const { groupIdData, groupIdLoading, groupIdError } = useGroupId(groupId);
  const { setGroupData, groupData } = useContext(GroupContext);

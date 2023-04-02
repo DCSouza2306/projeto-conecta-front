@@ -4,7 +4,6 @@ export default function useAsync(handler, loadNow = true) {
  const [data, setData] = useState(null);
  const [error, setError] = useState(null);
  const [loading, setLoading] = useState(loadNow);
-
  async function task(...args) {
   setLoading(true);
   setData(null);
@@ -21,6 +20,7 @@ export default function useAsync(handler, loadNow = true) {
  }
 
  useEffect(() => {
+
   if (loadNow) {
    task();
   }
