@@ -1,7 +1,7 @@
 import { Header } from "../../components/Header/Header";
 import styled from "styled-components";
 import Container from "../../components/Container";
-import { Book } from "../../components/Book/Book";
+import { Book } from "../../components/Books/Book";
 import { Loading } from "../../components/Loading";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -25,7 +25,6 @@ export function Books() {
  const { bookCountData: count } = useBooksCount();
 
  const numPages = Math.ceil(count?.count / parseInt(limit));
- console.log(parseInt(offset) === 0);
 
  function handlePage(param) {
   if (param === "NEXT") {
@@ -67,7 +66,7 @@ export function Books() {
      <div className="select-page-books">
       <button
        onClick={() => handlePage("PREVIEW")}
-       className="buttons-page-preview"
+       className="buttons-page-preview" //eslint-disable-next-line
        disabled={page == 1}
       >
        Anterior
@@ -79,7 +78,11 @@ export function Books() {
        <p>de</p>
        <p>{numPages}</p>
       </div>
-      <button onClick={() => handlePage("NEXT")} className="buttons-page-next" disabled={page == numPages}>
+      <button
+       onClick={() => handlePage("NEXT")}
+       className="buttons-page-next" //eslint-disable-next-line
+       disabled={page == numPages}
+      >
        Proximo
       </button>
      </div>
