@@ -1,7 +1,7 @@
 import { Header } from "../../components/Header/Header";
 import styled from "styled-components";
 import Container from "../../components/Container";
-import { Book } from "../../components/Books/Book";
+import { Book } from "../../components/ExploreBooks/BookExplore";
 import { Loading } from "../../components/Loading";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -9,7 +9,7 @@ import { useQuery } from "../../hooks/useQuery";
 import { useBookData } from "../../hooks/useBookData";
 import { useBooksCount } from "../../hooks/api/useBooksCount";
 
-export function Books() {
+export function ExploreBooks() {
  const navigate = useNavigate();
  const urlQuery = useQuery();
  let offset = urlQuery.get("offset");
@@ -42,7 +42,7 @@ export function Books() {
  }
 
  return (
-  <BooksSection>
+  <ExploreBooksSection>
    <Header />
 
    {bookError || bookLoading ? (
@@ -88,11 +88,11 @@ export function Books() {
      </div>
     </Container>
    )}
-  </BooksSection>
+  </ExploreBooksSection>
  );
 }
 
-const BooksSection = styled.section`
+const ExploreBooksSection = styled.section`
  h2 {
   margin-top: 3rem;
   margin-bottom: 1rem;

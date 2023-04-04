@@ -5,12 +5,12 @@ import { useNavigate } from "react-router-dom";
 export function GroupExplore({ id, name, description, urlImage, status }) {
  const navigate = useNavigate();
  function navigateGroup() {
-  navigate(`/explore/${id}`);
+  navigate(`/explore/group/${id}`);
  }
  return (
   <GroupExploreDiv>
    <div className="image-text-group-explore">
-    <img src={urlImage} />
+    <img src={urlImage} alt="logo grupo" />
     <div className="text-group-explore">
      <h3 onClick={() => navigateGroup()}>{name}</h3>
      <p>{description}</p>
@@ -18,7 +18,7 @@ export function GroupExplore({ id, name, description, urlImage, status }) {
    </div>
    <div className="group-status-explore">
     <AiFillCheckCircle className="icon-open-explore" />
-    <p>{status == "OPEN" ? "Aberto" : "Fechado"}</p>
+    <p>{status === "OPEN" ? "Aberto" : "Fechado"}</p>
    </div>
   </GroupExploreDiv>
  );

@@ -1,14 +1,14 @@
 import styled from "styled-components";
 import { Header } from "../../components/Header/Header";
-import { GroupExplore } from "../../components/Explore/GroupExplore";
+import { GroupExplore } from "../../components/ExploreGroups/GroupExplore";
 import Container from "../../components/Container";
 import { useGroups } from "../../hooks/api/useGroups";
 import { Loading } from "../../components/Loading";
 
-export function Explore() {
+export function ExploreGroups() {
  const { groupsData, groupsLoading, groupsError } = useGroups();
  return (
-  <ExploreSection>
+  <ExploreGroupsSection>
    <Header />
    {groupsLoading || groupsError ? (
     <Loading />
@@ -29,11 +29,11 @@ export function Explore() {
       })}
     </Container>
    )}
-  </ExploreSection>
+  </ExploreGroupsSection>
  );
 }
 
-const ExploreSection = styled.section`
+const ExploreGroupsSection = styled.section`
  h2 {
   margin-top: 3rem;
   margin-bottom: 1.8rem;

@@ -1,17 +1,20 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Home } from "./pages/Home/index";
-import { Explore } from "./pages/Explore/index";
+import { ExploreGroups } from "./pages/ExploreGroups/index";
 import { Group } from "./pages/Group";
-import { Books } from "./pages/Books";
+import { ExploreBooks } from "./pages/ExploreBooks";
+import { Book } from "./pages/Book";
+
 
 function App() {
  return (
   <BrowserRouter>
    <Routes>
     <Route path="/" element={<Home />} />
-    <Route path="/explore" element={<Explore />} />
-    <Route path="/explore/:groupId" element={<Group />} />
-    <Route path="/books/offset?/limit?" element={<Books />} />
+    <Route path="/explore/groups" element={<ExploreGroups />} />
+    <Route path="/explore/group/:groupId" element={<Group />} />
+    <Route path="/explore/books/offset?/limit?" element={<ExploreBooks />} />
+    <Route path="/explore/book/:bookId" element={<Book />} />
    </Routes>
   </BrowserRouter>
  );
