@@ -1,16 +1,30 @@
 import styled from "styled-components";
 import Box from "../../Box";
 import { CurrentGroup } from "./CurrentGroup";
-import ButtonShowAll from "../NextReadings/NextRedingsGroupsList";
+import { useContext } from "react";
+import BookContext from "../../../context/bookContext";
+import ButtonStyled from "../../ButtonStyled";
 
 export function CurrentReadingsGroupsList() {
+ const { bookData } = useContext(BookContext);
  return (
   <CurrentReadingsGroupsListDiv>
    <div className="current-list-container">
-    <CurrentGroup />
-    <CurrentGroup />
+    {bookData?.CurrentReadings.map((e) => {
+     return (
+      <CurrentGroup
+       key={e.id}
+       id={e.id}
+       name={e.name}
+       urlImage={e.urlImage}
+       groupStatus={e.groupStatus}
+      />
+     );
+    })}
    </div>
-   <ButtonShowAll>Exibir todos</ButtonShowAll>
+   <ButtonShowAllCurrent disabled={bookData?.CurrentReadings.length < 2}>
+    Exibir todos
+   </ButtonShowAllCurrent>
   </CurrentReadingsGroupsListDiv>
  );
 }
@@ -21,7 +35,18 @@ const CurrentReadingsGroupsListDiv = styled(Box)`
  flex-direction: column;
  align-items: center;
 
- .current-list-container{
-    height: 200px;
+ .current-list-container {
+  height: 200px;
+ }
+`;
+
+const ButtonShowAllCurrent = styled(ButtonStyled)`
+ margin-top: 1rem;
+ width: 200px;
+ height: 40px;
+ font-size: 1.25rem;
+
+ :disabled {
+  visibility: hidden;
  }
 `;

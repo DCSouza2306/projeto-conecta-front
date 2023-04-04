@@ -1,18 +1,24 @@
 import { AiFillCheckCircle } from "react-icons/ai";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
-export function CurrentGroup() {
+export function CurrentGroup({id, name, urlImage, groupStatus}) {
+  const navigate = useNavigate()
+  function navigateGroup(){
+    navigate(`/explore/group/${id}`)
+  }
  return (
   <CurrentGroupDiv>
    <img
-    src="https://cfvila.com.br/blog/wp-content/uploads/2019/10/clubes-leitura.jpg"
+    src={urlImage}
     alt="grupo de leitura"
+    onClick={() => navigateGroup()}
    />
    <div className="name-status-group">
-    <p>Nome do Grupoooooooooooooooooooooooo</p>
+    <p>{name}</p>
     <div className="status-group-current">
      <AiFillCheckCircle />
-     <p>Aberto</p>
+     <p>{groupStatus === "OPEN" ? "Aberto" : "Fechado"}</p>
     </div>
    </div>
   </CurrentGroupDiv>
@@ -39,6 +45,7 @@ const CurrentGroupDiv = styled.div`
   width: 60px;
   height: 60px;
   border-radius: 100%;
+  cursor: pointer;
  }
 
  .status-group-current {

@@ -3,16 +3,16 @@ import useAsync  from "../useAsync";
 
 export function useBooks(offset, limit) {
   const {
-    data: bookData,
-    loading: bookLoading,
-    error: bookError,
+    data: booksData,
+    loading: booksLoading,
+    error: booksError,
     task: getBooks
   } = useAsync(() => bookApi.getBooks(offset,limit));
 
   return {
-    bookData,
-    bookLoading,
-    bookError,
+    booksData,
+    booksLoading,
+    booksError,
     getBooks
   };
 

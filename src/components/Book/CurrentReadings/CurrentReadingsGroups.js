@@ -1,13 +1,22 @@
+import { useContext } from "react";
 import styled from "styled-components";
+import BookContext from "../../../context/bookContext";
 import { CurrentReadingsGroupsList } from "./CurrentReadingsGroupsList";
+import { NoCurrentReadingsGroups } from "./NoCurrentReadingsGroup";
 
 export function CurrentReadingsGroups() {
+ const { bookData } = useContext(BookContext);
+ const currentReadings = bookData?.CurrentReadings;
  return (
   <CurrentReadingsGroupsDiv>
    <h3>
     Grupos que estão <br /> lendo este livro
    </h3>
-   <CurrentReadingsGroupsList />
+   {currentReadings?.length === 0 ? (
+    <NoCurrentReadingsGroups />
+   ) : (
+    <CurrentReadingsGroupsList />
+   )}
   </CurrentReadingsGroupsDiv>
  );
 }

@@ -10,4 +10,9 @@ async function getBooksCount(){
     return response.data
 }
 
-export const bookApi = { getBooks, getBooksCount };
+async function getBookById(id){
+    const response = await api.get(`/books/${id}`);
+    return response.data
+}
+
+export const bookApi = { getBooks, getBooksCount, getBookById };

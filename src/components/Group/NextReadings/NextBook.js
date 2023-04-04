@@ -1,12 +1,16 @@
 import styled from "styled-components";
 import { BookTitleAndDate } from "../BookTitleAndDate";
 import dayjs from "dayjs";
+import { useNavigate } from "react-router-dom";
 
 export function NextBook({id, urlImage, title, author, start, finish}) {
-
+    const navigate = useNavigate()
+function navigateBook(){
+    navigate(`/explore/book/${id}`)
+}
  return (
   <NextBookDiv>
-   <img src={urlImage} alt="livro" />
+   <img src={urlImage} alt="livro" onClick={() => navigateBook()}/>
    <BookTitleAndDate>
     <div>
      <p>{title}</p>
@@ -31,5 +35,6 @@ const NextBookDiv = styled.div`
   height: 120px;
   width: 80px;
   border-radius: 5px;
+  cursor: pointer;
  }
 `;

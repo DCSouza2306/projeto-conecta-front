@@ -1,7 +1,7 @@
 import { Header } from "../../components/Header/Header";
 import styled from "styled-components";
 import Container from "../../components/Container";
-import { Book } from "../../components/ExploreBooks/BookExplore";
+import { BookExplore } from "../../components/ExploreBooks/BookExplore";
 import { Loading } from "../../components/Loading";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -21,8 +21,8 @@ export function ExploreBooks() {
   limit = 14;
  }
  const [page, setPage] = useState(1);
- const { bookData, bookLoading, bookError } = useBookData(offset, limit);
- const { bookCountData: count } = useBooksCount();
+ const { booksData, booksLoading, booksError } = useBookData(offset, limit);
+ const { booksCountData: count } = useBooksCount();
 
  const numPages = Math.ceil(count?.count / parseInt(limit));
 
@@ -38,22 +38,22 @@ export function ExploreBooks() {
    urlQuery.set("offset", preview);
   }
   offset = urlQuery.get("offset");
-  navigate(`/books?offset=${offset}&limit=${limit}`);
+  navigate(`/explore/books?offset=${offset}&limit=${limit}`);
  }
 
  return (
   <ExploreBooksSection>
    <Header />
 
-   {bookError || bookLoading ? (
+   {booksError || booksLoading ? (
     <Loading />
    ) : (
     <Container>
      <h2>Livros</h2>
      <div className="book-list">
-      {bookData.map((e) => {
+      {booksData.map((e) => {
        return (
-        <Book
+        <BookExplore
          key={e.id}
          id={e.id}
          title={e.title}

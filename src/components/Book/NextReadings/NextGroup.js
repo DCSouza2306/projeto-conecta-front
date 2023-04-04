@@ -1,21 +1,29 @@
 import styled from "styled-components";
 import { AiFillCheckCircle } from "react-icons/ai";
+import dayjs from "dayjs";
+import { useNavigate } from "react-router-dom";
 
-export function NextGroup() {
+export function NextGroup({id, name, urlImage, groupStatus, startReading}) {
+   const navigate = useNavigate();
+
+   function navigateGroup(){
+      navigate(`/explore/group/${id}`)
+   }
  return (
   <NextGroupDiv>
    <div className="image-name-group">
     <img
-     src="https://cfvila.com.br/blog/wp-content/uploads/2019/10/clubes-leitura.jpg"
+     src={urlImage}
      alt="logo grupo de leitura"
+     onClick={() => navigateGroup()}
     />
-    <p>Nome do Grupo</p>
+    <p>{name}</p>
    </div>
 
-   <p className="start-reading-group">24/05/2023</p>
+   <p className="start-reading-group">{dayjs(startReading).format("DD/MM/YYYY")}</p>
    <div className="status-group">
     <AiFillCheckCircle />
-    <p>Aberto</p>
+    <p>{groupStatus === "OPEN" ? "Aberto" : "Fechado"}</p>
    </div>
   </NextGroupDiv>
  );
@@ -27,11 +35,12 @@ display: flex;
 align-items: center;
 justify-content: space-between;
 font-size: 1.15rem;
-margin-top: 0.65rem;
+margin-bottom: 0.65rem;
  img {
   width: 60px;
   height: 60px;
   border-radius: 100%;
+  cursor: pointer;
  }
 
  .start-reading-group, .image-name-group, .status-group{

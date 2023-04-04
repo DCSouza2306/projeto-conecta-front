@@ -4,13 +4,19 @@ import GroupContext from "../../../context/groupContext";
 import Box from "../../Box";
 import { BookTitleAndDate } from "../BookTitleAndDate";
 import dayjs from "dayjs";
+import { useNavigate } from "react-router-dom";
 
 export function CurrentBook() {
+ const navigate = useNavigate();
  const { groupData } = useContext(GroupContext);
  const currentBook = groupData?.CurrentReading;
+
+ function navigateBook(){
+    navigate(`/explore/book/${currentBook?.id}`)
+ }
  return (
   <CurrentBookDiv>
-   <img src={currentBook?.urlImage} alt="livro" />
+   <img src={currentBook?.urlImage} alt="livro" onClick={() => navigateBook()} />
    <div className="book-informations">
     <BookTitleAndDate>
      <div>
@@ -24,9 +30,7 @@ export function CurrentBook() {
       ).format("DD/MM/YYYY")}`}
      </p>
     </BookTitleAndDate>
-    <div className="book-informations-bottom">
-     {currentBook?.synopsis}
-    </div>
+    <div className="book-informations-bottom">{currentBook?.synopsis}</div>
    </div>
   </CurrentBookDiv>
  );
@@ -43,6 +47,7 @@ const CurrentBookDiv = styled(Box)`
   height: 230px;
   border-radius: 5px;
   margin-right: 40px;
+  cursor: pointer;
  }
  .book-informations-bottom {
   margin-top: 20px;
