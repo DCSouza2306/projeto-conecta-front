@@ -1,7 +1,7 @@
 import { Header } from "../../components/Header/Header";
 import styled from "styled-components";
 import imagem from "../../assets/images/people-reading.jpg";
-import Container from "../../components/Container";
+import Container from "../../components/Layout/Container";
 
 export function Home() {
 

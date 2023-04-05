@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { NextGroup } from "./NextGroup";
-import Box from "../../Box";
-import ButtonStyled from "../../ButtonStyled";
+import Box from "../../Layout/Box";
+import ButtonStyled from "../../Layout/ButtonStyled";
 import { useContext } from "react";
 import BookContext from "../../../context/bookContext";
 

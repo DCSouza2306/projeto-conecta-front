@@ -3,16 +3,16 @@ import { Header } from "../../components/Header/Header";
 import { About } from "../../components/Group/About/About";
 import { CurrentReading } from "../../components/Group/CurrentBook/CurrentReading";
 import { Meeting } from "../../components/Group/Meeting/Meeting";
-import ButtonStyled from "../../components/ButtonStyled";
+import ButtonStyled from "../../components/Layout/ButtonStyled";
 import { NextReadings } from "../../components/Group/NextReadings/NextReadings";
-import Container from "../../components/Container";
+import Container from "../../components/Layout/Container";
 import { Link } from "../../components/Group/Links/Link";
 import { UserList } from "../../components/Group/Members/UserList";
 import { useParams } from "react-router-dom";
 import { useGroupId } from "../../hooks/api/useGroupId";
 import { useContext, useEffect } from "react";
 import GroupContext from "../../context/groupContext";
-import { Loading } from "../../components/Loading";
+import { Loading } from "../../components/Utils/Loading";
 
 export function Group() {
 

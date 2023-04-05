@@ -2,8 +2,8 @@ import { BookPrincipal } from "../../components/Book/BookPrincipal";
 import { CurrentReadingsGroups } from "../../components/Book/CurrentReadings/CurrentReadingsGroups";
 import { NextReadingsGroups } from "../../components/Book/NextReadings/NextReadingsGroups";
 import { Header } from "../../components/Header/Header";
-import Container from "../../components/Container";
-import { Loading } from "../../components/Loading";
+import Container from "../../components/Layout/Container";
+import { Loading } from "../../components/Utils/Loading";
 import styled from "styled-components";
 import { useBookById } from "../../hooks/api/useBookById";
 import { useParams } from "react-router-dom";
@@ -14,7 +14,6 @@ export function Book() {
  const { bookId } = useParams();
  const { bookError, bookLoading, bookData } = useBookById(bookId);
  const { setBookData } = useContext(BookContext);
- console.log(bookData);
  useEffect(() => {
   setBookData(bookData);
  }, [bookLoading]);

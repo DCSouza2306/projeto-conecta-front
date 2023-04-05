@@ -1,9 +1,9 @@
 import styled from "styled-components";
-import Box from "../../Box";
+import Box from "../../Layout/Box";
 import { CurrentGroup } from "./CurrentGroup";
 import { useContext } from "react";
 import BookContext from "../../../context/bookContext";
-import ButtonStyled from "../../ButtonStyled";
+import ButtonStyled from "../../Layout/ButtonStyled";
 
 export function CurrentReadingsGroupsList() {
  const { bookData } = useContext(BookContext);

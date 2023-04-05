@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import styled from "styled-components";
 import GroupContext from "../../../context/groupContext";
-import Box from "../../Box";
+import Box from "../../Layout/Box";
 
 export function LinkBox() {
    const { groupData } = useContext(GroupContext);

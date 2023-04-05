@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import { Header } from "../../components/Header/Header";
 import { GroupExplore } from "../../components/ExploreGroups/GroupExplore";
-import Container from "../../components/Container";
+import Container from "../../components/Layout/Container";
 import { useGroups } from "../../hooks/api/useGroups";
-import { Loading } from "../../components/Loading";
+import { Loading } from "../../components/Utils/Loading";
 
 export function ExploreGroups() {
  const { groupsData, groupsLoading, groupsError } = useGroups();

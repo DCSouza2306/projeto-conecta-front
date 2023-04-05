@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import styled from "styled-components";
 import GroupContext from "../../../context/groupContext";
-import ButtonStyled from "../../ButtonStyled";
+import ButtonStyled from "../../Layout/ButtonStyled";
 import { User } from "./User";
 
 export function UserList(){

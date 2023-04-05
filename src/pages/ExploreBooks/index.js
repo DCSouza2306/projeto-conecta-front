@@ -1,16 +1,15 @@
 import { Header } from "../../components/Header/Header";
 import styled from "styled-components";
-import Container from "../../components/Container";
+import Container from "../../components/Layout/Container";
 import { BookExplore } from "../../components/ExploreBooks/BookExplore";
-import { Loading } from "../../components/Loading";
+import { Loading } from "../../components/Utils/Loading";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { useQuery } from "../../hooks/useQuery";
 import { useBookData } from "../../hooks/useBookData";
 import { useBooksCount } from "../../hooks/api/useBooksCount";
+import { Pagination } from "../../components/Pagination/Pagination";
 
 export function ExploreBooks() {
- const navigate = useNavigate();
  const urlQuery = useQuery();
  let offset = urlQuery.get("offset");
  let limit = urlQuery.get("limit");
@@ -25,21 +24,6 @@ export function ExploreBooks() {
  const { booksCountData: count } = useBooksCount();
 
  const numPages = Math.ceil(count?.count / parseInt(limit));
-
- function handlePage(param) {
-  if (param === "NEXT") {
-   setPage(page + 1);
-   const next = parseInt(offset) + parseInt(limit);
-   urlQuery.set("offset", next);
-  }
-  if (param === "PREVIEW") {
-   setPage(page - 1);
-   const preview = parseInt(offset) - parseInt(limit);
-   urlQuery.set("offset", preview);
-  }
-  offset = urlQuery.get("offset");
-  navigate(`/explore/books?offset=${offset}&limit=${limit}`);
- }
 
  return (
   <ExploreBooksSection>
@@ -63,29 +47,7 @@ export function ExploreBooks() {
        );
       })}
      </div>
-     <div className="select-page-books">
-      <button
-       onClick={() => handlePage("PREVIEW")}
-       className="buttons-page-preview" //eslint-disable-next-line
-       disabled={page == 1}
-      >
-       Anterior
-      </button>
-      <div className="num-pages-books">
-       <div className="actual-page">
-        <p>{page}</p>
-       </div>
-       <p>de</p>
-       <p>{numPages}</p>
-      </div>
-      <button
-       onClick={() => handlePage("NEXT")}
-       className="buttons-page-next" //eslint-disable-next-line
-       disabled={page == numPages}
-      >
-       Proximo
-      </button>
-     </div>
+     <Pagination page={page} numPages={numPages} setPage={setPage} offset={offset} limit={limit} />
     </Container>
    )}
   </ExploreBooksSection>
@@ -104,54 +66,5 @@ const ExploreBooksSection = styled.section`
   display: flex;
   width: 1240px;
   flex-wrap: wrap;
- }
-
- .select-page-books {
-  margin: 0 auto;
-  width: 400px;
-  display: flex;
-  justify-content: space-between;
-
-  .buttons-page-preview,
-  .buttons-page-next {
-   width: 120px;
-   height: 40px;
-   font-size: 1.3rem;
-   border: 0.2rem solid #8e82d9;
-   border-radius: 5px;
-   background-color: #ffffff;
-   font-family: "Raleway", sans-serif;
-   cursor: pointer;
-  }
-
-  .buttons-page-preview {
-   :disabled {
-    visibility: hidden;
-   }
-  }
-
-  .buttons-page-next {
-   :disabled {
-    visibility: hidden;
-   }
-  }
-
-  .num-pages-books {
-   width: 120px;
-   display: flex;
-   align-items: center;
-   justify-content: space-around;
-   font-size: 1.3rem;
-
-   .actual-page {
-    background-color: #e6e3f9;
-    width: 32px;
-    height: 32px;
-    border-radius: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-   }
-  }
  }
 `;
