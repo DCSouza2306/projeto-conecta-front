@@ -2,18 +2,18 @@ import { useContext } from "react";
 import styled from "styled-components";
 import GroupContext from "../../../context/groupContext";
 import ButtonStyled from "../../Layout/ButtonStyled";
-import { User } from "./User";
+import { Member } from "./Member";
 
-export function UserList(){
+export function MemberList(){
     const {groupData} = useContext(GroupContext);
     const members = groupData?.Members
     return(
-        <UserListDiv>
+        <Wrapper>
             <h3>Membros</h3>
-            <div className="members-list">
+            <ul>
             {members?.map((e) => {
                 return(
-                    <User
+                    <Member
                     key={e.id}
                     id={e.id}
                     name={e.name}
@@ -22,10 +22,10 @@ export function UserList(){
                      />
                 )
             })}
-            </div>
+            </ul>
             {members?.length > 4 ? <ButtonShowUser>Exibir todos</ButtonShowUser> : <></>}
             
-        </UserListDiv>
+        </Wrapper>
     )
 }
 
@@ -35,7 +35,7 @@ width: 190px;
 font-size: 20px;
 `
 
-const UserListDiv = styled.div`
+const Wrapper = styled.div`
 height: 450px;
 width: 410px;
 display: flex;
@@ -49,7 +49,7 @@ h3{
     padding-left: 50px;
 }
 
-.members-list{
+ul{
     height: 350px;
     width: 350px;
 }

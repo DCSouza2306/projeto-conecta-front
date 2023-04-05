@@ -2,21 +2,17 @@ import { useContext } from "react";
 import styled from "styled-components";
 import GroupContext from "../../../context/groupContext";
 import { MeetingBox } from "./MeetingBox";
-import { NoMeeting } from "./NoMeeting";
 
 export function Meeting() {
- const { groupData } = useContext(GroupContext);
-
- const meeting = groupData?.Meeting;
  return (
-  <MeetingDiv>
+  <Wrapper>
    <h3>Encontro</h3>
-   {meeting?.id === undefined ? <NoMeeting /> : <MeetingBox />}
-  </MeetingDiv>
+  <MeetingBox />
+  </Wrapper>
  );
 }
 
-const MeetingDiv = styled.div`
+const Wrapper = styled.div`
  margin-top: 30px;
  width: 410px;
  display: flex;

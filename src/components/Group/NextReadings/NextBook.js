@@ -9,7 +9,7 @@ function navigateBook(){
     navigate(`/explore/book/${id}`)
 }
  return (
-  <NextBookDiv>
+  <NextBookLi>
    <img src={urlImage} alt="livro" onClick={() => navigateBook()}/>
    <BookTitleAndDate>
     <div>
@@ -18,11 +18,11 @@ function navigateBook(){
     </div>
     <p>{`${dayjs(start).format("DD/MM")} a ${dayjs(finish).format("DD/MM/YYYY")}`}</p>
    </BookTitleAndDate>
-  </NextBookDiv>
+  </NextBookLi>
  );
 }
 
-const NextBookDiv = styled.div`
+const NextBookLi = styled.li`
  width: 100%;
  height: 120px;
  display: flex;

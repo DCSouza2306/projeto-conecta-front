@@ -26,15 +26,15 @@ export function ExploreBooks() {
  const numPages = Math.ceil(count?.count / parseInt(limit));
 
  return (
-  <ExploreBooksSection>
+  <>
    <Header />
 
    {booksError || booksLoading ? (
     <Loading />
    ) : (
-    <Container>
-     <h2>Livros</h2>
-     <div className="book-list">
+    <ExploreBooksSection>
+     <h1>Livros</h1>
+     <ul>
       {booksData.map((e) => {
        return (
         <BookExplore
@@ -46,23 +46,23 @@ export function ExploreBooks() {
         />
        );
       })}
-     </div>
+     </ul>
      <Pagination page={page} numPages={numPages} setPage={setPage} offset={offset} limit={limit} />
-    </Container>
+    </ExploreBooksSection>
    )}
-  </ExploreBooksSection>
+  </>
  );
 }
 
-const ExploreBooksSection = styled.section`
- h2 {
-  margin-top: 3rem;
+const ExploreBooksSection = styled(Container)`
+ h1 {
+  padding-top: 3rem;
   margin-bottom: 1rem;
   font-size: 3rem;
   text-align: center;
  }
 
- .book-list {
+ ul {
   display: flex;
   width: 1240px;
   flex-wrap: wrap;

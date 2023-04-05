@@ -8,13 +8,13 @@ import { Loading } from "../../components/Utils/Loading";
 export function ExploreGroups() {
  const { groupsData, groupsLoading, groupsError } = useGroups();
  return (
-  <ExploreGroupsSection>
+  <>
    <Header />
    {groupsLoading || groupsError ? (
     <Loading />
    ) : (
-    <Container>
-     <h2>Explore todos os grupos</h2>
+    <ExploreGroupsSection>
+     <h1>Explore todos os grupos</h1>
       {groupsData.map((e) => {
        return (
         <GroupExplore
@@ -27,15 +27,15 @@ export function ExploreGroups() {
         />
        );
       })}
-    </Container>
+    </ExploreGroupsSection>
    )}
-  </ExploreGroupsSection>
+  </>
  );
 }
 
-const ExploreGroupsSection = styled.section`
- h2 {
-  margin-top: 3rem;
+const ExploreGroupsSection = styled(Container)`
+ h1 {
+  padding-top: 3rem;
   margin-bottom: 1.8rem;
   font-size: 3rem;
   text-align: center;

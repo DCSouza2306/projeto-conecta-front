@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 export default styled.section`
-height: 100vh;
-padding-top: 100px;
-width: 1240px;
-margin: 0 auto;
-`
+ height: calc(100vh - 100px);
+ width: 1240px;
+ margin: 100px auto 0 auto;
+
+`;

@@ -11,24 +11,32 @@ export function MeetingBox() {
  const meeting = groupData?.Meeting;
  return (
   <MeetingBoxDiv>
-   <div className="meeting-informations">
-    <p>Data</p>
-    <p>{dayjs(meeting?.date).format("DD/MM/YYYY")}</p>
-   </div>
-   <div className="meeting-informations">
-    <p>Horario</p>
-    <p>{dayjs(meeting?.hour).format("HH:mm")}</p>
-   </div>
-   <div className="meeting-informations">
-    <p>Link</p>
-    <p>{meeting?.url}</p>
-   </div>
-   <div className="meeting-informations">
-    <p>Mediador</p>
-    <p>Usuario</p>
-   </div>
+   {meeting?.id === undefined ? (
+    <p>Não há reuniões agendadas</p>
+   ) : (
+    <>
+     <ul>
+      <li>
+       <p>Data</p>
+       <p>{dayjs(meeting?.date).format("DD/MM/YYYY")}</p>
+      </li>
+      <li>
+       <p>Horario</p>
+       <p>{dayjs(meeting?.hour).format("HH:mm")}</p>
+      </li>
+      <li>
+       <p>Link</p>
+       <p>{meeting?.url}</p>
+      </li>
+      <li>
+       <p>Mediador</p>
+       <p>Usuario</p>
+      </li>
+     </ul>
 
-   <ButtonConfirmmeeting>Confirmar Participação</ButtonConfirmmeeting>
+     <ButtonConfirmMeeting>Confirmar Participação</ButtonConfirmMeeting>
+    </>
+   )}
   </MeetingBoxDiv>
  );
 }
@@ -40,7 +48,7 @@ const MeetingBoxDiv = styled(Box)`
  padding: 1.8rem;
  margin-top: 1.8rem;
 
- .meeting-informations {
+ li {
   display: flex;
   justify-content: space-between;
   font-size: 20px;
@@ -54,10 +62,8 @@ const MeetingBoxDiv = styled(Box)`
  }
 `;
 
-const ButtonConfirmmeeting = styled(ButtonStyled)`
+const ButtonConfirmMeeting = styled(ButtonStyled)`
  width: 285px;
  height: 50px;
  font-size: 20px;
 `;
-
-export default MeetingBoxDiv;

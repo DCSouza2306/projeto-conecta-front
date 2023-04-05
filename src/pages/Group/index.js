@@ -7,15 +7,16 @@ import ButtonStyled from "../../components/Layout/ButtonStyled";
 import { NextReadings } from "../../components/Group/NextReadings/NextReadings";
 import Container from "../../components/Layout/Container";
 import { Link } from "../../components/Group/Links/Link";
-import { UserList } from "../../components/Group/Members/UserList";
+import { MemberList } from "../../components/Group/Members/MemberList";
 import { useParams } from "react-router-dom";
 import { useGroupId } from "../../hooks/api/useGroupId";
 import { useContext, useEffect } from "react";
 import GroupContext from "../../context/groupContext";
 import { Loading } from "../../components/Utils/Loading";
+import { Page } from "../ExploreGroups/Page";
+import PageDiv from "../ExploreGroups/Page";
 
 export function Group() {
-
  const { groupId } = useParams();
  const { groupIdData, groupIdLoading, groupIdError } = useGroupId(groupId);
  const { setGroupData, groupData } = useContext(GroupContext);
@@ -24,16 +25,16 @@ export function Group() {
   setGroupData(groupIdData);
  }, [groupIdLoading]);
  return (
-  <GroupSection>
-    <Header />
-   {(groupIdLoading || groupIdError) ? (
-    <LoadingGroup />
+  <>
+   <Header />
+   {groupIdLoading || groupIdError ? (
+    <Loading />
    ) : (
-    <section>
-     <Container>
+    <GroupSection>
+     <Page>
       <div className="image-name-group">
        <img src={groupData?.urlImage} alt="livro" />
-       <h2>{groupData?.name}</h2>
+       <h1>{groupData?.name}</h1>
        <ButtonRequest>Solicitar</ButtonRequest>
       </div>
 
@@ -44,38 +45,25 @@ export function Group() {
        <div className="line" />
        <Meeting />
       </div>
-     </Container>
+     </Page>
 
-     <ContainerSecond>
+     <SecondPage>
       <NextReadings />
       <div className="line-second" />
       <div>
        <Link />
-       <UserList />
+       <MemberList />
       </div>
-     </ContainerSecond>
-    </section>
+     </SecondPage>
+    </GroupSection>
    )}
-  </GroupSection>
+  </>
  );
 }
 
-const ContainerSecond = styled(Container)`
- display: flex;
- .line-second {
-  margin-top: 70px;
-  width: 1px;
-  height: 680px;
-  background-color: #9795a6;
- }
-`;
-
-const GroupSection = styled.section`
- display: flex;
- flex-direction: column;
- align-items: center;
+const GroupSection = styled(Container)`
+ height: calc(200vh - 200px);
  .image-name-group {
-  margin-top: 50px;
   padding-bottom: 20px;
   border-bottom: 1px solid #9795a6;
   display: flex;
@@ -86,7 +74,7 @@ const GroupSection = styled.section`
    height: 120px;
    border-radius: 100%;
   }
-  h2 {
+  h1 {
    font-size: 48px;
   }
  }
@@ -103,12 +91,18 @@ const GroupSection = styled.section`
  }
 `;
 
+const SecondPage = styled(PageDiv)`
+display: flex;
+  .line-second {
+   margin-top: 70px;
+   width: 1px;
+   height: 680px;
+   background-color: #9795a6;
+  }
+`
+
 const ButtonRequest = styled(ButtonStyled)`
  width: 375px;
  font-size: 32px;
  height: 90px;
 `;
-
-const LoadingGroup = styled(Loading)`
-   background-color: red;
-`

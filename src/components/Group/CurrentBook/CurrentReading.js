@@ -1,21 +1,16 @@
-import { useContext } from "react";
 import styled from "styled-components";
-import GroupContext from "../../../context/groupContext";
-import { CurrentBook } from "./CurrentBook";
-import { NoCurrentBook } from "./NoCurrentBook";
+import { CurrentBookBox } from "./CurrentBook";
 
 export function CurrentReading() {
- const { groupData } = useContext(GroupContext);
- const currentBook = groupData?.CurrentReading;
  return (
-  <CurrentReadingDiv>
+  <Wrapper>
    <h3>Leitura Atual</h3>
-   {currentBook?.id == undefined ? <NoCurrentBook /> : <CurrentBook />}
-  </CurrentReadingDiv>
+   <CurrentBookBox />
+  </Wrapper>
  );
 }
 
-export const CurrentReadingDiv = styled.div`
+export const Wrapper = styled.div`
  margin-top: 30px;
  width: 830px;
  display: flex;

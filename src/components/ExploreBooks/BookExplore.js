@@ -8,15 +8,15 @@ export function BookExplore({ id, urlImage, author, title }) {
   navigate(`/explore/book/${id}`);
  }
  return (
-  <BookDiv>
+  <Book>
    <img src={urlImage} alt="Livro" onClick={() => navigateBook()} />
    <p className="book-list-title">{title} </p>
    <p className="book-list-author">{author}</p>
-  </BookDiv>
+  </Book>
  );
 }
 
-const BookDiv = styled.div`
+const Book = styled.li`
  margin-top: 0.5rem;
  margin-left: 1.45rem;
  width: 150px;

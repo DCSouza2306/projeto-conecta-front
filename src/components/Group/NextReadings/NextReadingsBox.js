@@ -10,19 +10,25 @@ export function NextReadingsBox() {
 
  return (
   <NextReadingsBoxDiv>
-   {nextReadings?.map((e) => {
-    return (
-     <NextBook
-      key={e.id}
-      id={e.id}
-      urlImage={e.urlImage}
-      title={e.title}
-      author={e.author}
-      start={e.start}
-      finish={e.finish}
-     />
-    );
-   })}
+   {nextReadings?.lenght === 0 ? (
+    <p className="no-content-next-readings">Não há proximas leituras</p>
+   ) : (
+    <ul>
+     {nextReadings?.map((e) => {
+      return (
+       <NextBook
+        key={e.id}
+        id={e.id}
+        urlImage={e.urlImage}
+        title={e.title}
+        author={e.author}
+        start={e.start}
+        finish={e.finish}
+       />
+      );
+     })}
+    </ul>
+   )}
   </NextReadingsBoxDiv>
  );
 }
@@ -33,6 +39,9 @@ const NextReadingsBoxDiv = styled(Box)`
  margin-top: 30px;
  display: flex;
  flex-direction: column;
-`;
 
-export default NextReadingsBoxDiv;
+ .no-content-next-readings{
+    text-align: center;
+    margin-top: 2.5rem;
+ }
+`;

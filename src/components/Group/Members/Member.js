@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export function User({ id, name, urlImage, position }) {
+export function Member({ id, name, urlImage, position }) {
  let memberType;
 
  switch (position) {
@@ -18,15 +18,15 @@ export function User({ id, name, urlImage, position }) {
    break;
  }
  return (
-  <UserDiv>
+  <MemberLi>
    <img src={urlImage} alt="user" />
    <p className="meeting-member-name">{name}</p>
    <p className="meeting-member-status">{memberType}</p>
-  </UserDiv>
+  </MemberLi>
  );
 }
 
-const UserDiv = styled.div`
+const MemberLi = styled.li`
  display: flex;
  align-items: center;
  justify-content: space-between;

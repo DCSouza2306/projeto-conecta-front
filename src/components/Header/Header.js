@@ -3,22 +3,20 @@ import { AiFillApi } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 
 export function Header() {
-    const navigate = useNavigate()
-    function changePage(dist){
-        navigate(`/${dist}`)
-    }
  return (
   <HeaderHead>
    <div className="logo-image">
     <p>Conecta</p>
     <AiFillApi color="#FFF" />
    </div>
-   <div className="menu">
-    <button onClick={() => changePage("")}>Pagina Inicial</button>
-    <button onClick={() => changePage("explore/groups")}>Explorar</button>
-    <button onClick={() => changePage("explore/books")}>Livros</button>
-    <button>Entrar / Cadastrar</button>
-   </div>
+   <nav>
+    <ul>
+        <li><a href={`/`}>Pagina Inicial</a></li>
+        <li><a href={`/explore/groups`}>Explorar</a></li>
+        <li><a href={`/explore/books`}>Livros</a></li>
+        <li><a>Entrar/Cadastrar</a></li>
+    </ul>
+   </nav>
   </HeaderHead>
  );
 }
@@ -49,15 +47,19 @@ const HeaderHead = styled.header`
   text-transform: uppercase;
  }
 
- .menu {
-  display: flex;
+ nav {
+  
+  ul{
+    display: flex;
   font-size: 22px;
-  button{
+  }
+  a{
    margin-right: 50px;
    font-size: 22px;
    border: none;
    color: #fff;
    background-color: transparent;
+   text-decoration: none;
    :hover {
     cursor: pointer;
     text-decoration: underline;
