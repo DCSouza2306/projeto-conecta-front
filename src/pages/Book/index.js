@@ -18,26 +18,24 @@ export function Book() {
   setBookData(bookData);
  }, [bookLoading]);
  return (
-  <BookSection>
+  <>
    <Header />
    {bookError || bookLoading ? (
     <Loading />
    ) : (
-    <BookContainer>
+    <BookSection>
      <BookPrincipal />
      <div className="book-groups-infos">
       <NextReadingsGroups />
       <div className="line-book-page" />
       <CurrentReadingsGroups />
      </div>
-    </BookContainer>
+    </BookSection>
    )}
-  </BookSection>
+  </>
  );
 }
-
-const BookSection = styled.section``;
-const BookContainer = styled(Container)`
+const BookSection = styled(Container)`
  .book-groups-infos {
   display: flex;
 

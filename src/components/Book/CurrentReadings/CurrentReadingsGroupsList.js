@@ -7,21 +7,27 @@ import ButtonStyled from "../../Layout/ButtonStyled";
 
 export function CurrentReadingsGroupsList() {
  const { bookData } = useContext(BookContext);
+ const currentReadings = bookData?.CurrentReadings;
  return (
   <CurrentReadingsGroupsListDiv>
-   <div className="current-list-container">
-    {bookData?.CurrentReadings.map((e) => {
-     return (
-      <CurrentGroup
-       key={e.id}
-       id={e.id}
-       name={e.name}
-       urlImage={e.urlImage}
-       groupStatus={e.groupStatus}
-      />
-     );
-    })}
-   </div>
+   {currentReadings?.length === 0 ? (
+    <p>Não há grupos lendo esse livro</p>
+   ) : (
+    <ul>
+     {bookData?.CurrentReadings.map((e) => {
+      return (
+       <CurrentGroup
+        key={e.id}
+        id={e.id}
+        name={e.name}
+        urlImage={e.urlImage}
+        groupStatus={e.groupStatus}
+       />
+      );
+     })}
+    </ul>
+   )}
+
    <ButtonShowAllCurrent disabled={bookData?.CurrentReadings.length < 2}>
     Exibir todos
    </ButtonShowAllCurrent>
@@ -34,10 +40,12 @@ const CurrentReadingsGroupsListDiv = styled(Box)`
  width: 285px;
  flex-direction: column;
  align-items: center;
+ padding-top: 1.8rem;
 
- .current-list-container {
+ ul {
   height: 200px;
  }
+
 `;
 
 const ButtonShowAllCurrent = styled(ButtonStyled)`

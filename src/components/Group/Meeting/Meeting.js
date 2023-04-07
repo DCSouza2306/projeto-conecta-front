@@ -1,6 +1,4 @@
-import { useContext } from "react";
 import styled from "styled-components";
-import GroupContext from "../../../context/groupContext";
 import { MeetingBox } from "./MeetingBox";
 
 export function Meeting() {

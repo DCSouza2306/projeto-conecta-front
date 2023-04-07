@@ -10,7 +10,7 @@ export function NextGroup({id, name, urlImage, groupStatus, startReading}) {
       navigate(`/explore/group/${id}`)
    }
  return (
-  <NextGroupDiv>
+  <NextGroupLi>
    <div className="image-name-group">
     <img
      src={urlImage}
@@ -25,11 +25,11 @@ export function NextGroup({id, name, urlImage, groupStatus, startReading}) {
     <AiFillCheckCircle />
     <p>{groupStatus === "OPEN" ? "Aberto" : "Fechado"}</p>
    </div>
-  </NextGroupDiv>
+  </NextGroupLi>
  );
 }
 
-const NextGroupDiv = styled.div`
+const NextGroupLi = styled.li`
 width: 830px;
 display: flex;
 align-items: center;

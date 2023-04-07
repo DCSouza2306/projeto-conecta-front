@@ -10,7 +10,7 @@ export function Link() {
  return (
   <Wrapper>
    <h3>Links</h3>
-   {links?.id == undefined ? <NoLinks /> : <LinkBox url={links} />}
+   {links?.id === undefined ? <NoLinks /> : <LinkBox url={links} />}
   </Wrapper>
  );
 }

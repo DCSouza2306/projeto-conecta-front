@@ -12,11 +12,7 @@ export function CurrentReadingsGroups() {
    <h3>
     Grupos que estão <br /> lendo este livro
    </h3>
-   {currentReadings?.length === 0 ? (
-    <NoCurrentReadingsGroups />
-   ) : (
-    <CurrentReadingsGroupsList />
-   )}
+   <CurrentReadingsGroupsList />
   </CurrentReadingsGroupsDiv>
  );
 }

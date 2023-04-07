@@ -8,7 +8,7 @@ export function CurrentGroup({id, name, urlImage, groupStatus}) {
     navigate(`/explore/group/${id}`)
   }
  return (
-  <CurrentGroupDiv>
+  <CurrentGroupLi>
    <img
     src={urlImage}
     alt="grupo de leitura"
@@ -21,17 +21,16 @@ export function CurrentGroup({id, name, urlImage, groupStatus}) {
      <p>{groupStatus === "OPEN" ? "Aberto" : "Fechado"}</p>
     </div>
    </div>
-  </CurrentGroupDiv>
+  </CurrentGroupLi>
  );
 }
 
-const CurrentGroupDiv = styled.div`
+const CurrentGroupLi = styled.li`
  display: flex;
  justify-content: space-around;
- align-items: center;
  width: 270px;
  height: 90px;
- margin-top: 1rem;
+ margin-bottom: 1rem;
  font-size: 1.15rem;
 
  p:first-child {

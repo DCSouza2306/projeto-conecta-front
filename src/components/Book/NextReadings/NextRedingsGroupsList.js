@@ -17,18 +17,20 @@ export function NextReadingsGroupsList() {
    {bookData?.NextReadings.length === 0 ? (
     <p>Não há grupos que irão ler esse livro</p>
    ) : (
-    bookData?.NextReadings.map((e) => {
-     return (
-      <NextGroup
-       key={e.id}
-       id={e.id}
-       name={e.name}
-       urlImage={e.urlImage}
-       groupStatus={e.groupStatus}
-       startReading={e.startReading}
-      />
-     );
-    })
+    <ul>
+     {bookData?.NextReadings.map((e) => {
+      return (
+       <NextGroup
+        key={e.id}
+        id={e.id}
+        name={e.name}
+        urlImage={e.urlImage}
+        groupStatus={e.groupStatus}
+        startReading={e.startReading}
+       />
+      );
+     })}
+    </ul>
    )}
    <ButtonShowAll disabled={bookData?.NextReadings.length < 2}>
     Exibir todos
