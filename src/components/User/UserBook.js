@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
 export function UserBook({id, urlImage, title}){
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
     function navigateBook(){
         navigate(`/explore/book/${id}`)

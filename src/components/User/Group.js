@@ -3,6 +3,22 @@ import { useNavigate } from "react-router-dom";
 
 export function Group({id, urlImage, name, position}){
     const navigate = useNavigate();
+    let memberType;
+
+    switch (position) {
+     case "OWNER":
+      memberType = "Dono";
+      break;
+     case "OFFICER":
+      memberType = "Mediador";
+      break;
+     case "MEMBER":
+      memberType = "Membro";
+      break;
+   
+     default:
+      break;
+    }
 
     function navigateGroup(){
         navigate(`/explore/group/${id}`)
@@ -11,7 +27,7 @@ export function Group({id, urlImage, name, position}){
         <GroupLi>
             <img src={urlImage} alt="logo grupo" onClick={() => navigateGroup()}/>
             <p onClick={() => navigateGroup()}>{name}</p>
-            <span>{position}</span>
+            <span>{memberType}</span>
         </GroupLi>
     )
 };

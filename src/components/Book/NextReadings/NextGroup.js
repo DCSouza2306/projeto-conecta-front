@@ -17,7 +17,7 @@ export function NextGroup({id, name, urlImage, groupStatus, startReading}) {
      alt="logo grupo de leitura"
      onClick={() => navigateGroup()}
     />
-    <p>{name}</p>
+    <p onClick={() => navigateGroup()}>{name}</p>
    </div>
 
    <p className="start-reading-group">{dayjs(startReading).format("DD/MM/YYYY")}</p>
@@ -58,6 +58,7 @@ margin-bottom: 0.65rem;
 
   p{
     margin-left: 1.15rem;
+    cursor: pointer;
   }
  }
 

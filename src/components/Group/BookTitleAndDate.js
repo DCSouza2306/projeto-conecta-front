@@ -16,5 +16,6 @@ const BookTitleAndDateDiv = styled.div`
 
  p:first-child {
   font-size: 28px;
+  cursor: pointer;
  }
 `;

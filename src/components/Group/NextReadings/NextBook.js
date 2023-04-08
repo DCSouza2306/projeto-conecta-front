@@ -13,7 +13,7 @@ function navigateBook(){
    <img src={urlImage} alt="livro" onClick={() => navigateBook()}/>
    <BookTitleAndDate>
     <div>
-     <p>{title}</p>
+     <p onClick={() => navigateBook()}>{title}</p>
      <p>{author}</p>
     </div>
     <p>{`${dayjs(start).format("DD/MM")} a ${dayjs(finish).format("DD/MM/YYYY")}`}</p>
