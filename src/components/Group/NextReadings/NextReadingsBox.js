@@ -10,7 +10,7 @@ export function NextReadingsBox() {
 
  return (
   <NextReadingsBoxDiv>
-   {nextReadings?.lenght === 0 ? (
+   {nextReadings?.length === 0 ? (
     <p className="no-content-next-readings">Não há proximas leituras</p>
    ) : (
     <ul>

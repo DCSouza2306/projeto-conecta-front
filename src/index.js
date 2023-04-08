@@ -7,12 +7,15 @@ import "./assets/styles/style.css";
 
 import { GroupProvider } from "./context/groupContext";
 import { BookProvider } from "./context/bookContext";
+import { UserProvider } from "./context/userContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
- <GroupProvider>
-  <BookProvider>
-   <App />
-  </BookProvider>
- </GroupProvider>
+ <UserProvider>
+  <GroupProvider>
+   <BookProvider>
+    <App />
+   </BookProvider>
+  </GroupProvider>
+ </UserProvider>
 );

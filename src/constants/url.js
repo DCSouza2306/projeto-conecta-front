@@ -1,1 +1,0 @@
-export const urlImg = "src/assets/images/people-reading.jpg";

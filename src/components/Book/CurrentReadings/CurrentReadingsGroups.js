@@ -1,12 +1,7 @@
-import { useContext } from "react";
 import styled from "styled-components";
-import BookContext from "../../../context/bookContext";
 import { CurrentReadingsGroupsList } from "./CurrentReadingsGroupsList";
-import { NoCurrentReadingsGroups } from "./NoCurrentReadingsGroup";
 
 export function CurrentReadingsGroups() {
- const { bookData } = useContext(BookContext);
- const currentReadings = bookData?.CurrentReadings;
  return (
   <CurrentReadingsGroupsDiv>
    <h3>
