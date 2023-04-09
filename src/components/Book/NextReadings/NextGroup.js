@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { AiFillCheckCircle } from "react-icons/ai";
+import { AiFillCheckCircle, AiFillCloseCircle } from "react-icons/ai";
 import dayjs from "dayjs";
 import { useNavigate } from "react-router-dom";
 
@@ -10,7 +10,7 @@ export function NextGroup({id, name, urlImage, groupStatus, startReading}) {
       navigate(`/explore/group/${id}`)
    }
  return (
-  <NextGroupLi>
+  <NextGroupLi colorIcons={groupStatus === "OPEN" ? "#8AB799" : "#B78A8A"}>
    <div className="image-name-group">
     <img
      src={urlImage}
@@ -21,10 +21,18 @@ export function NextGroup({id, name, urlImage, groupStatus, startReading}) {
    </div>
 
    <p className="start-reading-group">{dayjs(startReading).format("DD/MM/YYYY")}</p>
+   {groupStatus === "OPEN" ? 
    <div className="status-group">
     <AiFillCheckCircle />
-    <p>{groupStatus === "OPEN" ? "Aberto" : "Fechado"}</p>
+    <p>Aberto</p>
    </div>
+   :
+   <div className="status-group">
+    <AiFillCloseCircle />
+    <p>Fechado</p>
+   </div>
+   }
+   
   </NextGroupLi>
  );
 }
@@ -66,7 +74,7 @@ margin-bottom: 0.65rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #8ab799;
+    color: ${props => props.colorIcons};
     p{
       margin-left: 0.65rem;
     }

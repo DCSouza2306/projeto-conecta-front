@@ -15,6 +15,7 @@ import GroupContext from "../../context/groupContext";
 import { Loading } from "../../components/Utils/Loading";
 import { Page } from "../ExploreGroups/Page";
 import PageDiv from "../ExploreGroups/Page";
+import { ButtonsGroup } from "../../components/Group/Buttons/ButtonsGroup";
 
 export function Group() {
  const { groupId } = useParams();
@@ -35,7 +36,8 @@ export function Group() {
       <div className="image-name-group">
        <img src={groupData?.urlImage} alt="livro" />
        <h1>{groupData?.name}</h1>
-       <ButtonRequest>Solicitar</ButtonRequest>
+       <ButtonsGroup groupStatus={groupData?.status}/>
+       
       </div>
 
       <About />

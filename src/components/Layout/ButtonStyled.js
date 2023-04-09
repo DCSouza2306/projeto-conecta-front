@@ -8,4 +8,9 @@ export default styled.button`
  border: none;
  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
  cursor: pointer;
+ :disabled{
+    background-color: #EAEBEC;
+    color: #000000;
+    cursor: default;
+ }
 `;
