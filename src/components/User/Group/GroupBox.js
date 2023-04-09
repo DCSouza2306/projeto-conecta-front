@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import styled from "styled-components";
-import Box from "../../components/Layout/Box"
-import UserContext from "../../context/userContext";
+import Box from "../../Layout/Box"
+import UserContext from "../../../context/userContext";
 import { Group } from "./Group";
 
 export function GroupBox(){

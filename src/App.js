@@ -5,6 +5,7 @@ import { Group } from "./pages/Group";
 import { ExploreBooks } from "./pages/ExploreBooks";
 import { Book } from "./pages/Book";
 import { User } from "./pages/User";
+import { SignUp } from "./pages/SignUp";
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
     <Route path="/explore/books/offset?/limit?" element={<ExploreBooks />} />
     <Route path="/explore/book/:bookId" element={<Book />} />
     <Route path="/user/:userName" element={<User />} />
+    <Route path="/sign-up" element={<SignUp />} />
    </Routes>
   </BrowserRouter>
  );

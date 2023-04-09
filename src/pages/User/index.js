@@ -8,9 +8,9 @@ import { useEffect, useContext } from "react";
 import UserContext from "../../context/userContext";
 
 import { UserInfos } from "../../components/User/UserInfos";
-import { UserGroups } from "../../components/User/UserGroups";
-import { CurrentReadings } from "../../components/User/CurrentReadings";
-import { NextReadings } from "../../components/User/NextReadings";
+import { UserGroups } from "../../components/User/Group/UserGroups";
+import { CurrentReadings } from "../../components/User/CurrentReadings/CurrentReadings";
+import { NextReadings } from "../../components/User/NextReadings/NextReadings";
 
 export function User() {
  const { userName } = useParams();

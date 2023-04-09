@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { AiFillCheckCircle } from "react-icons/ai";
+import { AiFillCheckCircle, AiFillCloseCircle } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 
 export function GroupExplore({ id, name, description, urlImage, status }) {
@@ -8,7 +8,7 @@ export function GroupExplore({ id, name, description, urlImage, status }) {
   navigate(`/explore/group/${id}`);
  }
  return (
-  <GroupExploreDiv>
+  <GroupExploreDiv colorIcons={status === "OPEN" ? "#8AB799" : "#B78A8A"}>
    <div className="image-text-group-explore">
     <img src={urlImage} alt="logo grupo" />
     <div className="text-group-explore">
@@ -16,9 +16,16 @@ export function GroupExplore({ id, name, description, urlImage, status }) {
      <p>{description}</p>
     </div>
    </div>
-   <div className="group-status-explore">
-    <AiFillCheckCircle className="icon-open-explore" />
-    <p>{status === "OPEN" ? "Aberto" : "Fechado"}</p>
+   <div className="group-status-explore" >
+    {status === "OPEN" ? <>
+    <AiFillCheckCircle/>
+    <p>Aberto</p>
+    </>
+    :
+    <>
+    <AiFillCloseCircle/>
+    <p>Fechado</p>
+    </>}
    </div>
   </GroupExploreDiv>
  );
@@ -45,6 +52,7 @@ const GroupExploreDiv = styled.div`
   }
 
   .text-group-explore {
+    font-size: 32px;
    h3 {
     font-size: 32px;
     margin-bottom: 30px;
@@ -62,9 +70,11 @@ const GroupExploreDiv = styled.div`
   height: 100%;
   align-items: center;
   display: flex;
-  color: #8ab799;
+  color: ${(props) => props.colorIcons};
+  font-size: 24px;
   p {
    font-size: 24px;
+   margin-left: 1rem;
   }
 
   .icon-open-explore {

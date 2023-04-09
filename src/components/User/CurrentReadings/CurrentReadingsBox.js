@@ -1,7 +1,7 @@
 import { useContext } from "react";
-import UserContainer from "./Layout/UserContainer";
-import UserContext from "../../context/userContext";
-import { UserBook } from "./UserBook";
+import UserContainer from "../Layout/UserContainer";
+import UserContext from "../../../context/userContext";
+import { UserBook } from "../UserBook";
 
 export function CurrentReadingsBox() {
  const { userData } = useContext(UserContext);
