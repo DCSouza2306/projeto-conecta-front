@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 export function Member({ id, name, urlImage, position }) {
    const navigate = useNavigate();
+   console.log(position)
 
    function navigateUser(){
       navigate(`/user/${name}`)
@@ -11,13 +12,13 @@ export function Member({ id, name, urlImage, position }) {
  let memberType;
 
  switch (position) {
-  case "OWNER":
+  case "owner":
    memberType = "Dono";
    break;
-  case "OFFICER":
+  case "administrator":
    memberType = "Mediador";
    break;
-  case "MEMBER":
+  case "member":
    memberType = "Membro";
    break;
 

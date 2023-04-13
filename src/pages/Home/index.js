@@ -2,31 +2,29 @@ import { Header } from "../../components/Header/Header";
 import styled from "styled-components";
 import imagem from "../../assets/images/people-reading.jpg";
 import Container from "../../components/Layout/Container";
-import { useContext } from "react";
-import UserContext from "../../context/userContext";
 
 export function Home() {
-const {userProfileData} = useContext(UserContext);
-console.log(userProfileData);
  return (
-  <HomeSection>
+  <>
    <Header />
-   <ContainerHome>
-    <div className="text-home">
-     <h2>Se conecte nesse mundo fantástico</h2>
-     <h3>Diversos clubes de leitura em um único lugar</h3>
-    </div>
-    <img src={imagem} alt="people reading" />
-   </ContainerHome>
-  </HomeSection>
+   <HomeSection>
+    <ContainerHome>
+     <div className="text-home">
+      <h2>Se conecte nesse mundo fantástico</h2>
+      <h3>Diversos clubes de leitura em um único lugar</h3>
+     </div>
+     <img src={imagem} alt="people reading" />
+    </ContainerHome>
+   </HomeSection>
+  </>
  );
 }
 
 const ContainerHome = styled(Container)`
-display: flex;
-flex-direction: column;
-align-items: center;
-`
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+`;
 const HomeSection = styled.section`
  height: 100vh;
  display: flex;

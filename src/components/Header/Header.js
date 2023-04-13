@@ -1,7 +1,14 @@
 import styled from "styled-components";
 import { AiFillApi } from "react-icons/ai";
+import { useContext } from "react";
+import UserContext from "../../context/userContext";
+import { UserSettings } from "./UserSettings";
+import { UserSettingsBox } from "./UserSettingsBox";
+import { useState } from "react";
 
 export function Header() {
+ const { userProfileData } = useContext(UserContext);
+ const [showBox, setShowBox] = useState(false)
  return (
   <HeaderHead>
    <div className="logo-image">
@@ -10,12 +17,25 @@ export function Header() {
    </div>
    <nav>
     <ul>
-        <li><a href={`/`}>Pagina Inicial</a></li>
-        <li><a href={`/explore/groups`}>Explorar</a></li>
-        <li><a href={`/explore/books`}>Livros</a></li>
-        <li><a href={`/login`}>Entrar/Cadastrar</a></li>
+     <li>
+      <a href={`/`}>Pagina Inicial</a>
+     </li>
+     <li>
+      <a href={`/explore/groups`}>Explorar</a>
+     </li>
+     <li>
+      <a href={`/explore/books`}>Livros</a>
+     </li>
+     {userProfileData?.token ? (
+      <UserSettings user={userProfileData.user} showBox={showBox} setShowBox={setShowBox} />
+     ) : (
+      <li>
+       <a href={`/login`}>Entrar/Cadastrar</a>
+      </li>
+     )}
     </ul>
    </nav>
+   <UserSettingsBox displaySettings={showBox}/>
   </HeaderHead>
  );
 }
@@ -31,7 +51,7 @@ const HeaderHead = styled.header`
  position: fixed;
  top: 0;
  right: 0;
- z-index: 1;
+ z-index: 10;
 
  .logo-image {
   font-family: "Black And White Picture", sans-serif;
@@ -47,12 +67,17 @@ const HeaderHead = styled.header`
  }
 
  nav {
-  
-  ul{
+  ul {
+   display: flex;
+   font-size: 22px;
+
+   li{
+    height: 60px;
     display: flex;
-  font-size: 22px;
+    align-items: center;
+   }
   }
-  a{
+  a {
    margin-right: 50px;
    font-size: 22px;
    border: none;
@@ -63,8 +88,7 @@ const HeaderHead = styled.header`
     cursor: pointer;
     text-decoration: underline;
    }
-  
-  };
+  }
   margin-right: 50px;
  }
 `;
