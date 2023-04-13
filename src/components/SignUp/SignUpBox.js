@@ -2,15 +2,29 @@ import Box from "../Layout/Box";
 import styled from "styled-components";
 import { useState } from "react";
 import ButtonStyled from "../Layout/ButtonStyled";
+import { useSignUp } from "../../hooks/api/useSignUp";
+import { useNavigate } from "react-router-dom";
 
 export function SignUpBox() {
  const [user, setUser] = useState("");
  const [email, setEmail] = useState("");
  const [password, setPassword] = useState("");
  const [urlImage, setUrlImage] = useState("");
+ const {signUpLoading, signUp} = useSignUp();
+ const navigate = useNavigate()
+ async function submit(e){
+    e.preventDefault();
+    const body = {email, password, urlImage, userName: user}
+    try{
+        await signUp(body);
+        navigate("/");
+    } catch(error){
+        alert("Não foi possível fazer o cadastro, tente novamente")
+    }
+ }
  return (
   <SignUpBoxDiv>
-   <form>
+   <form onSubmit={submit}>
     <div>
      <label for="User">Nome de Usuario</label>
      <input
@@ -52,8 +66,9 @@ export function SignUpBox() {
      ></input>
     </div>
 
-    <ButtonSignUp>Cadastrar</ButtonSignUp>
+    <ButtonSignUp type="submit" disabled={signUpLoading}>Cadastrar</ButtonSignUp>
    </form>
+   <p><a>Já possui cadastro? Clique aqui...</a></p>
   </SignUpBoxDiv>
  );
 }
@@ -62,6 +77,11 @@ const SignUpBoxDiv = styled(Box)`
  width: 780px;
  height: 660px;
  margin-top: 3rem;
+ flex-direction: column;
+ align-items: center;
+ a{
+    cursor: pointer;
+ }
  form {
   width: 620px;
   margin: 0 auto;
@@ -95,4 +115,5 @@ width: 285px;
 height: 60px;
 font-size: 1.8rem;
 margin-top: 2rem;
+margin-bottom: 2rem;
 `
