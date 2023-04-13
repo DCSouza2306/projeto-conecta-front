@@ -6,6 +6,7 @@ import { ExploreBooks } from "./pages/ExploreBooks";
 import { Book } from "./pages/Book";
 import { User } from "./pages/User";
 import { SignUp } from "./pages/SignUp";
+import { Login } from "./pages/Login";
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
     <Route path="/explore/book/:bookId" element={<Book />} />
     <Route path="/user/:userName" element={<User />} />
     <Route path="/sign-up" element={<SignUp />} />
+    <Route path="/login" element={<Login />} />
    </Routes>
   </BrowserRouter>
  );

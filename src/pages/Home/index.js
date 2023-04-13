@@ -2,9 +2,12 @@ import { Header } from "../../components/Header/Header";
 import styled from "styled-components";
 import imagem from "../../assets/images/people-reading.jpg";
 import Container from "../../components/Layout/Container";
+import { useContext } from "react";
+import UserContext from "../../context/userContext";
 
 export function Home() {
-
+const {userProfileData} = useContext(UserContext);
+console.log(userProfileData);
  return (
   <HomeSection>
    <Header />

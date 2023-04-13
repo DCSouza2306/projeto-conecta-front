@@ -4,6 +4,7 @@ import { useState } from "react";
 import ButtonStyled from "../Layout/ButtonStyled";
 import { useSignUp } from "../../hooks/api/useSignUp";
 import { useNavigate } from "react-router-dom";
+import Swal from 'sweetalert2'
 
 export function SignUpBox() {
  const [user, setUser] = useState("");
@@ -17,9 +18,13 @@ export function SignUpBox() {
     const body = {email, password, urlImage, userName: user}
     try{
         await signUp(body);
-        navigate("/");
+        navigate("/login");
     } catch(error){
-        alert("Não foi possível fazer o cadastro, tente novamente")
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Não foi possível realizar o cadastro',
+          })
     }
  }
  return (
@@ -68,7 +73,7 @@ export function SignUpBox() {
 
     <ButtonSignUp type="submit" disabled={signUpLoading}>Cadastrar</ButtonSignUp>
    </form>
-   <p><a>Já possui cadastro? Clique aqui...</a></p>
+   <p><a href={"/login"}>Já possui cadastro? Clique aqui...</a></p>
   </SignUpBoxDiv>
  );
 }
@@ -81,6 +86,10 @@ const SignUpBoxDiv = styled(Box)`
  align-items: center;
  a{
     cursor: pointer;
+    text-decoration: none;
+    :hover{
+        text-decoration: underline;
+    }
  }
  form {
   width: 620px;

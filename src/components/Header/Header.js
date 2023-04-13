@@ -13,7 +13,7 @@ export function Header() {
         <li><a href={`/`}>Pagina Inicial</a></li>
         <li><a href={`/explore/groups`}>Explorar</a></li>
         <li><a href={`/explore/books`}>Livros</a></li>
-        <li><a>Entrar/Cadastrar</a></li>
+        <li><a href={`/login`}>Entrar/Cadastrar</a></li>
     </ul>
    </nav>
   </HeaderHead>
