@@ -11,7 +11,8 @@ export function UserSettingsBox({displaySettings}){
         <UserSettingsBoxDiv displaySettings={displaySettings}>
             <ul>
                 <li><a>Meu perfil</a></li>
-                <li><a>Meus Grupos</a></li>
+                <li><a href={"/user/my-groups"}>Meus Grupos</a></li>
+                <li><a href={"/group/create"}>Criar Grupo</a></li>
                 <li><a onClick={() => clearData()}>Sair</a></li>
             </ul>
         </UserSettingsBoxDiv>
@@ -40,6 +41,10 @@ border-radius: 0 0 25px 25px;
         cursor: pointer;
         :hover{
             text-decoration: underline;
+        }
+
+        a{
+            text-decoration: none;
         }
     }
  }

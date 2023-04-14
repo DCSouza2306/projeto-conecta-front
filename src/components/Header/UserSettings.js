@@ -7,8 +7,6 @@ export function UserSettings(params) {
     setShowBox(!showBox);
  }
 
- console.log(params);
-
  return (
   <>
    <UserSettingsLi>

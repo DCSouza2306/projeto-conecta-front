@@ -26,7 +26,7 @@ export function LoginBox() {
     Swal.fire({
         icon: 'error',
         title: 'Oops...',
-        text: 'Não foi possível realizar o login',
+        text: `${error.response.data}`,
       })
   }
  }
@@ -34,7 +34,7 @@ export function LoginBox() {
   <LoginBoxDiv>
    <form onSubmit={submit}>
     <div>
-     <label for="Email">Email</label>
+     <label htmlFor="Email">Email</label>
      <input
       type="email"
       id="Email"
@@ -44,7 +44,7 @@ export function LoginBox() {
      ></input>
     </div>
     <div>
-     <label for="Password">Senha</label>
+     <label htmlFor="Password">Senha</label>
      <input
       type="password"
       id="Password"

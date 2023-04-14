@@ -31,7 +31,7 @@ export function SignUpBox() {
   <SignUpBoxDiv>
    <form onSubmit={submit}>
     <div>
-     <label for="User">Nome de Usuario</label>
+     <label htmlFor="User">Nome de Usuario</label>
      <input
       type="text"
       id="User"
@@ -41,7 +41,7 @@ export function SignUpBox() {
      ></input>
     </div>
     <div>
-     <label for="Email">Email</label>
+     <label htmlFor="Email">Email</label>
      <input
       type="email"
       id="Email"
@@ -51,7 +51,7 @@ export function SignUpBox() {
      ></input>
     </div>
     <div>
-     <label for="Password">Senha</label>
+     <label htmlFor="Password">Senha</label>
      <input
       type="password"
       id="Password"
@@ -61,7 +61,7 @@ export function SignUpBox() {
      ></input>
     </div>
     <div>
-     <label for="UrlImage">Url Avatar</label>
+     <label htmlFor="UrlImage">Url Avatar</label>
      <input
       type="url"
       id="UrlImage"
