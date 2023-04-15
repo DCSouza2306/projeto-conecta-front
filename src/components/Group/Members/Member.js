@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 
 export function Member({ id, name, urlImage, position }) {
    const navigate = useNavigate();
-   console.log(position)
 
    function navigateUser(){
       navigate(`/user/${name}`)

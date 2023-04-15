@@ -21,7 +21,6 @@ export function Group() {
  const { groupId } = useParams();
  const { groupIdData, groupIdLoading, groupIdError } = useGroupId(groupId);
  const { setGroupData, groupData } = useContext(GroupContext);
-
  useEffect(() => {
   setGroupData(groupIdData);
  }, [groupIdLoading]);
@@ -36,7 +35,7 @@ export function Group() {
       <div className="image-name-group">
        <img src={groupData?.urlImage} alt="livro" />
        <h1>{groupData?.name}</h1>
-       <ButtonsGroup groupStatus={groupData?.status}/>
+       <ButtonsGroup groupStatus={groupData?.status} memberStatus={groupData?.Members}/>
        
       </div>
 

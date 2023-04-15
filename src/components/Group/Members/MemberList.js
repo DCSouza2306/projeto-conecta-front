@@ -6,7 +6,7 @@ import { Member } from "./Member";
 
 export function MemberList(){
     const {groupData} = useContext(GroupContext);
-    const members = groupData?.Members
+    const members = groupData?.Members.filter((e) => e.status === "APROVED");
     return(
         <Wrapper>
             <h3>Membros</h3>
