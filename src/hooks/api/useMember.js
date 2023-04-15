@@ -16,3 +16,19 @@ export function useRequest() {
   requestMember,
  };
 }
+
+export function useLeaveGroup() {
+    const {
+     loading: leaveGroupLoading,
+     error: leaveGroupError,
+     task: leaveGroup,
+    } = useAsync(memberApi.leaveGroup, false);
+   
+    return {
+     leaveGroupLoading,
+     leaveGroupError,
+     leaveGroup,
+    };
+   }
+
+

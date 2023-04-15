@@ -5,7 +5,7 @@ import UserContext from "../../../context/userContext";
 import { AiFillCaretDown } from "react-icons/ai";
 import { Options } from "./SettingsGroup";
 import { useState } from "react";
-import { useRequest } from "../../../hooks/api/userMember";
+import { useRequest } from "../../../hooks/api/useMember";
 import { useEffect } from "react";
 import GroupContext from "../../../context/groupContext";
 
@@ -60,7 +60,7 @@ export function ButtonsGroup({
    {groupStatus === "CLOSED" && (
     <ButtonRequest disabled={true}>Grupo Fechado</ButtonRequest>
    )}
-   <Options display={enable} role={role} />
+   <Options display={enable} role={role} setEnable={setEnable} />
   </>
  );
 }
