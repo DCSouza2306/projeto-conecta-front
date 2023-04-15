@@ -14,7 +14,8 @@ export function Options({ display, role }) {
 
 const OptionsDiv = styled.div`
  width: 375px;
- height: ${props => props.displayDiv ? "110px" : "50px"};
+ min-height: 50px;
+ max-height: ${props => props.displayDiv ? "110px" : "50px"};
  background-color: #5c548c;
  position: absolute;
  right: 388px;
@@ -28,7 +29,7 @@ const OptionsDiv = styled.div`
  justify-content: center;
  ul{
     font-size: 1.3rem;
-
+    margin-bottom: 1rem;
     li{
         margin-top: 0.5rem;
         :hover{

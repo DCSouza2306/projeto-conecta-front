@@ -2,14 +2,25 @@ import styled from "styled-components";
 import ButtonStyled from "../../Layout/ButtonStyled";
 import { useContext } from "react";
 import UserContext from "../../../context/userContext";
-import {AiFillCaretDown} from "react-icons/ai"
+import { AiFillCaretDown } from "react-icons/ai";
 import { Options } from "./SettingsGroup";
 import { useState } from "react";
+import { useRequest } from "../../../hooks/api/userMember";
+import { useEffect } from "react";
+import GroupContext from "../../../context/groupContext";
 
-export function ButtonsGroup({ groupStatus, memberStatus }) {
+export function ButtonsGroup({
+ groupStatus,
+ memberStatus,
+ groupId,
+ getGroupById
+}) {
+ const { requestLoading, requestError, requestMember } = useRequest();
  const { userProfileData } = useContext(UserContext);
+ const { setGroupData, groupData } = useContext(GroupContext);
+ const token = userProfileData?.token;
  const [enable, setEnable] = useState(false);
- const userId = userProfileData.user.id;
+ const userId = userProfileData?.user?.id;
  const isMember = memberStatus?.filter((e) => e.id === userId);
  let role;
  let status;
@@ -17,20 +28,34 @@ export function ButtonsGroup({ groupStatus, memberStatus }) {
   role = e.position;
   status = e.status;
  });
+ useEffect(() => {
+ } ,[requestLoading])
 
- function toggleSettings(){
-    setEnable(!enable)
+ async function request() {
+  try {
+   await requestMember(token, groupId);
+   const groupData = await getGroupById(groupId);
+    setGroupData(groupData);
+  } catch (error) {
+   console.log(error);
+  }
+ }
+
+ function toggleSettings() {
+  setEnable(!enable);
  }
  return (
   <>
    {groupStatus === "OPEN" && !status && (
-    <ButtonRequest>Solicitar</ButtonRequest>
+    <ButtonRequest onClick={() => request()}>Solicitar</ButtonRequest>
    )}
    {status === "APPLIED" && (
     <ButtonRequest disabled={true}>Aguardando</ButtonRequest>
    )}
    {status === "APROVED" && (
-    <ButtonRequest onClick={() => toggleSettings()} boxShadow={enable}>Opções <AiFillCaretDown /> </ButtonRequest>
+    <ButtonRequest onClick={() => toggleSettings()} boxShadow={enable}>
+     Opções <AiFillCaretDown />{" "}
+    </ButtonRequest>
    )}
    {groupStatus === "CLOSED" && (
     <ButtonRequest disabled={true}>Grupo Fechado</ButtonRequest>
@@ -46,7 +71,7 @@ const ButtonRequest = styled(ButtonStyled)`
  height: 90px;
  z-index: 1;
  transition: border-radius 1s;
- box-shadow: ${props => props.boxShadow ? "none" : "rgba(0, 0, 0, 0.24) 0px 3px 8px"} ;
- border-radius: ${props => props.boxShadow ? "50px 50px 0 0" : ""};
+ box-shadow: ${(props) =>
+  props.boxShadow ? "none" : "rgba(0, 0, 0, 0.24) 0px 3px 8px"};
+ border-radius: ${(props) => (props.boxShadow ? "50px 50px 0 0" : "")};
 `;
-

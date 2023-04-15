@@ -16,10 +16,11 @@ import { Loading } from "../../components/Utils/Loading";
 import { Page } from "../ExploreGroups/Page";
 import PageDiv from "../ExploreGroups/Page";
 import { ButtonsGroup } from "../../components/Group/Buttons/ButtonsGroup";
+import { useState } from "react";
 
 export function Group() {
  const { groupId } = useParams();
- const { groupIdData, groupIdLoading, groupIdError } = useGroupId(groupId);
+ const { groupIdData, groupIdLoading, groupIdError, getGroupById } = useGroupId(groupId);
  const { setGroupData, groupData } = useContext(GroupContext);
  useEffect(() => {
   setGroupData(groupIdData);
@@ -35,8 +36,12 @@ export function Group() {
       <div className="image-name-group">
        <img src={groupData?.urlImage} alt="livro" />
        <h1>{groupData?.name}</h1>
-       <ButtonsGroup groupStatus={groupData?.status} memberStatus={groupData?.Members}/>
-       
+       <ButtonsGroup
+        groupStatus={groupData?.status}
+        memberStatus={groupData?.Members}
+        groupId={groupId}
+        getGroupById={getGroupById}
+       />
       </div>
 
       <About />
@@ -77,6 +82,7 @@ const GroupSection = styled(Container)`
   }
   h1 {
    font-size: 48px;
+   width: 600px;
   }
  }
 
@@ -93,14 +99,14 @@ const GroupSection = styled(Container)`
 `;
 
 const SecondPage = styled(PageDiv)`
-display: flex;
-  .line-second {
-   margin-top: 70px;
-   width: 1px;
-   height: 680px;
-   background-color: #9795a6;
-  }
-`
+ display: flex;
+ .line-second {
+  margin-top: 70px;
+  width: 1px;
+  height: 680px;
+  background-color: #9795a6;
+ }
+`;
 
 const ButtonRequest = styled(ButtonStyled)`
  width: 375px;
