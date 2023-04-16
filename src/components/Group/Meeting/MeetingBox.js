@@ -4,16 +4,39 @@ import styled from "styled-components";
 import GroupContext from "../../../context/groupContext";
 import Box from "../../Layout/Box";
 import ButtonStyled from "../../Layout/ButtonStyled";
+import UserContext from "../../../context/userContext";
+import { useConfirmMeeting } from "../../../hooks/api/useMeeting";
+import { useGroupId } from "../../../hooks/api/useGroupId";
 
 export function MeetingBox() {
- const { groupData } = useContext(GroupContext);
+ const { groupData, setGroupData } = useContext(GroupContext);
+ const { userProfileData } = useContext(UserContext);
+ const { meetingLoading, confirmMeeting } = useConfirmMeeting();
+ const groupId = groupData?.id;
+ const { getGroupById } = useGroupId(groupId, false);
+
+ const token = userProfileData?.token;
 
  const meeting = groupData?.Meeting;
+
+ const isConfirmed = meeting?.MeetingParticipant?.some((e) => {
+  return e.userId === userProfileData?.user?.id;
+ });
+
+ async function request() {
+  try {
+   await confirmMeeting(token, groupId, "confirm_cancel_meeting");
+   const group = await getGroupById(groupId);
+   setGroupData(group);
+  } catch (error) {
+   console.log(error);
+  }
+ }
+
  return (
   <MeetingBoxDiv>
-   {meeting?.id === undefined ? (
-    <p>Não há reuniões agendadas</p>
-   ) : (
+   {meeting?.id === undefined && <p>Não há reuniões agendadas</p>}
+   {meeting?.id !== undefined && (
     <>
      <ul>
       <li>
@@ -34,7 +57,10 @@ export function MeetingBox() {
       </li>
      </ul>
 
-     <ButtonConfirmMeeting>Confirmar Participação</ButtonConfirmMeeting>
+     <ButtonConfirmMeeting onClick={() => request()} isConfirmed={isConfirmed}>
+      {isConfirmed && <>Cancelar Participação</>}
+      {!isConfirmed && <>Confirmar Participação</>}
+     </ButtonConfirmMeeting>
     </>
    )}
   </MeetingBoxDiv>
@@ -66,4 +92,6 @@ const ButtonConfirmMeeting = styled(ButtonStyled)`
  width: 285px;
  height: 50px;
  font-size: 20px;
+
+ background-color: ${(props) => (!props.isConfirmed ? "" : "#E95A5A")};
 `;

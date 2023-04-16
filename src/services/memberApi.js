@@ -7,6 +7,7 @@ async function requestMember(token, groupId) {
  const response = await api.post(`/member/request/${groupId}`,{}, config);
  return response.data
 }
+
 async function leaveGroup(token, groupId) {
     const config = {
         headers: { Authorization: `Bearer ${token}` },
