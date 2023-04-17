@@ -52,7 +52,6 @@ export function EditGroupBox() {
   }
 
   try {
-    console.log(permissions.toString().replace(",", ", "))
     await changeGroupInfos(body, token, groupId, permissions.toString().replace(",", ", "));
     navigate(`/explore/group/${groupId}`)
   } catch (error) {
@@ -66,7 +65,7 @@ export function EditGroupBox() {
   }
  }
 
- async function requestCloseOpen() {
+ async function requestCloseOpen(e) {
   try {
    await closeOpenGroup(token, groupId, "close_open_group");
    const group = await getGroupById(groupId);

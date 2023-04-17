@@ -15,6 +15,20 @@ export function useBooks(offset, limit) {
     booksError,
     getBooks
   };
+}
 
+export function useSearchBook() {
+  const {
+    data: searchBookData,
+    loading: searchBookLoading,
+    error: searchBookError,
+    task: searchBook
+  } = useAsync(bookApi.searchBook, false);
 
+  return {
+    searchBookData,
+    searchBookLoading,
+    searchBookError,
+    searchBook
+  };
 }

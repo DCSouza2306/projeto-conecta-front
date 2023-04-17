@@ -6,6 +6,8 @@ import { NavBarOptions } from "../../components/EditGroup/NavBarOptions";
 import { useQuery } from "../../hooks/useQuery";
 import { EditGroupBox } from "../../components/EditGroup/EditGroupInfos";
 import { useParams } from "react-router-dom";
+import { EditReadinListBox } from "../../components/EditGroup/EditReadingList";
+import { AddBookBox } from "../../components/EditGroup/AddBookBox";
 
 export function EditGroup(){
     const urlQuery = useQuery();
@@ -19,7 +21,8 @@ export function EditGroup(){
             <h1> Editar Grupo</h1>
             <NavBarOptions groupId={groupId} />
             {selected === "infos" && <EditGroupBox />}
-            {selected === "book-list" && <p> Listas </p>}
+            {selected === "book-list" && <EditReadinListBox /> }
+            {selected === "add-book" && <AddBookBox /> }
             {selected === "meeting" && <p> Reuniões</p>}
             {selected === "members" && <p> Membros</p>}
         </EditGroupSection>
