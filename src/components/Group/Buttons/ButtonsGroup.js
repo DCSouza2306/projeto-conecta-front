@@ -16,9 +16,9 @@ export function ButtonsGroup({
  getGroupById
 }) {
   
- const { requestLoading, requestError, requestMember } = useRequest();
+ const { requestLoading, requestMember } = useRequest();
  const { userProfileData } = useContext(UserContext);
- const { setGroupData, groupData } = useContext(GroupContext);
+ const { setGroupData } = useContext(GroupContext);
  const token = userProfileData?.token;
  const [enable, setEnable] = useState(false);
  const userId = userProfileData?.user?.id;

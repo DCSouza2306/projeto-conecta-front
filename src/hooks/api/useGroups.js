@@ -46,3 +46,17 @@ export function useCreateGroup() {
     closeOpenGroup
   }
  }
+
+ export function useEditGroup(){
+  const{
+    loading: editGroupLoading,
+    error: editGroupError,
+    task: changeGroupInfos
+  } = useAsync(groupApi.changeGroupInfos, false);
+
+  return{
+    editGroupLoading,
+    editGroupError,
+    changeGroupInfos
+  }
+ }

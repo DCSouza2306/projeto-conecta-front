@@ -16,14 +16,15 @@ export function About() {
 const AboutDiv = styled(Box)`
  margin-top: 30px;
  flex-direction: column;
- justify-content: center;
  width: 1240px;
  height: 220px;
  padding: 0 50px;
  .about-group {
   font-size: 28px;
   font-weight: 500;
-  margin-bottom: 20px;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  justify-self: flex-start;
  }
  .about-group-text {
   font-size: 24px;

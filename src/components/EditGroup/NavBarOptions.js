@@ -1,16 +1,17 @@
 import { useState } from "react";
 import styled from "styled-components";
 import { useQuery } from "../../hooks/useQuery";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 export function NavBarOptions() {
  const navigate = useNavigate();
  const urlQuery = useQuery();
  const [selected, setSelected] = useState("infos");
+ const {groupId} = useParams()
 
  function toggleOption(params) {
   urlQuery.set("options", params);
-  navigate(`/group/edit?options=${params}`);
+  navigate(`/group/${groupId}/edit?options=${params}`);
   setSelected(params);
  }
  return (

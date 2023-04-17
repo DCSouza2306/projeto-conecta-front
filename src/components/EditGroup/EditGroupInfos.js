@@ -1,31 +1,69 @@
 import styled from "styled-components";
 import ButtonStyled from "../Layout/ButtonStyled";
 import { useState } from "react";
-import { useCloseOpenGroup, useCreateGroup } from "../../hooks/api/useGroups";
-import { useContext } from "react";
+import { useCloseOpenGroup, useEditGroup } from "../../hooks/api/useGroups";
+import { useContext, useRef } from "react";
 import UserContext from "../../context/userContext";
 import Swal from "sweetalert2";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import GroupContext from "../../context/groupContext";
 import { useGroupId } from "../../hooks/api/useGroupId";
 
 export function EditGroupBox() {
  const { groupId } = useParams();
+ const navigate = useNavigate()
+
+ const { userProfileData } = useContext(UserContext);
  const { setGroupData, groupData } = useContext(GroupContext);
- const { closeOpenLoading, closeOpenGroup } = useCloseOpenGroup();
+
+ const { closeOpenGroup } = useCloseOpenGroup();
+ const {editGroupLoading,changeGroupInfos} = useEditGroup();
  const {getGroupById } = useGroupId(groupId, false);
+
  const [name, setName] = useState(groupData?.name);
  const [description, setDescription] = useState(groupData?.description);
  const [about, setAbout] = useState(groupData?.about);
  const [urlImage, setUrlImage] = useState(groupData?.urlImage);
 
- const { userProfileData } = useContext(UserContext);
- const token = userProfileData.token;
+ const initialName = useRef(name)
+  const initialUrl = useRef(urlImage);
+  
+  const permissions = ["edit_group_description"];
+  
+  const token = userProfileData.token;
+  const status = groupData?.status;
 
- const { groupLoading, groupError, createGroup } = useCreateGroup();
 
  async function submit(e) {
   e.preventDefault();
+  const body = {
+    name,
+    description,
+    about,
+    urlImage,
+    status
+
+  }
+  if(initialName.current !== name){
+    permissions.push("edit_group_name")
+  }
+  if(initialUrl.current !== urlImage){
+    permissions.push("edit_group_image")
+  }
+
+  try {
+    console.log(permissions.toString().replace(",", ", "))
+    await changeGroupInfos(body, token, groupId, permissions.toString().replace(",", ", "));
+    navigate(`/explore/group/${groupId}`)
+  } catch (error) {
+    setName(initialName.current)
+    setUrlImage(initialUrl.current);
+    Swal.fire(
+      'Ação não permitida',
+      'Você não possui permissão para essa ação',
+      'warning'
+    )
+  }
  }
 
  async function requestCloseOpen() {
@@ -34,7 +72,11 @@ export function EditGroupBox() {
    const group = await getGroupById(groupId);
    setGroupData(group);
   } catch (error) {
-   alert("deu ruim");
+    Swal.fire(
+      'Ação não permitida',
+      'Você não possui permissão para essa ação',
+      'warning'
+    )
   }
  }
  return (
@@ -86,7 +128,7 @@ export function EditGroupBox() {
       </LabelInputDiv>
 
       <LabelInputDiv
-       colorButton={groupData?.status == "OPEN" ? "#E95A5A" : "#83B147"}
+       colorButton={groupData?.status === "OPEN" ? "#E95A5A" : "#83B147"}
       >
        <h4>Status do grupo</h4>
        <div className="status-group-options">
@@ -108,7 +150,7 @@ export function EditGroupBox() {
      </div>
     </div>
 
-    <ButtonCreateGroup type="submit" disabled={groupLoading}>
+    <ButtonCreateGroup type="submit" disabled={editGroupLoading}>
      Salvar
     </ButtonCreateGroup>
    </form>
