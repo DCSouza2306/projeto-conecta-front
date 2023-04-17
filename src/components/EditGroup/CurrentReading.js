@@ -6,17 +6,20 @@ import BackgroundContext from "../../context/backgroundContext";
 
 export function CurrentReading() {
  const { groupData } = useContext(GroupContext);
- const {enable, setEnable} = useContext(BackgroundContext)
+ const { enable, setEnable, setTypeContainer } = useContext(BackgroundContext);
  const currentReading = groupData?.CurrentReading;
- function changeCurrent(){
-    setEnable(!enable)
+ function changeCurrent() {
+  if (currentReading?.id) {
+   setEnable(!enable);
+   setTypeContainer("CURRENT");
+  }
  }
  return (
   <CurrentReadingDiv>
    <h3 onClick={() => changeCurrent()}>Leitura Atual</h3>
    <ul>
-    {!currentReading.id && <p>Não há leitura atual</p>}
-    {currentReading.id && (
+    {!currentReading?.id && <p>Não há leitura atual</p>}
+    {currentReading?.id && (
      <UserBook
       id={currentReading?.id}
       urlImage={currentReading?.urlImage}

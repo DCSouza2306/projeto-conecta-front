@@ -84,8 +84,6 @@ export function AddBookBox() {
       )
     console.log(error)
   }
-
-  console.log(body);
  }
 
  return (

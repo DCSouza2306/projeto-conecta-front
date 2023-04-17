@@ -17,6 +17,20 @@ export function useCreateBookList() {
  };
 }
 
+export function useDeleteBookList(){
+    const {
+        loading: deleteBookListLoading,
+        error: deleteBookListError,
+        task: deleteBookList,
+       } = useAsync(bookListApi.deleteBookList, false);
+      
+       return {
+        deleteBookListLoading,
+        deleteBookListError,
+        deleteBookList,
+       };
+}
+
 export function useUpdateBookList() {
     const {
      data: updateBookListData,
