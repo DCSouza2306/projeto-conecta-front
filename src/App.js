@@ -9,6 +9,7 @@ import { SignUp } from "./pages/SignUp";
 import { Login } from "./pages/Login";
 import { MyGroups } from "./pages/MyGroups";
 import { CreateGroup } from "./pages/CreateGroup";
+import { EditGroup } from "./pages/EditGroup";
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
     <Route path="/" element={<Home />} />
     <Route path="/explore/groups" element={<ExploreGroups />} />
     <Route path="/group/create" element={<CreateGroup />} />
+    <Route path="/group/:groupId/edit/options?" element={<EditGroup />} />
     <Route path="/explore/group/:groupId" element={<Group />} />
     <Route path="/explore/books/offset?/limit?" element={<ExploreBooks />} />
     <Route path="/explore/book/:bookId" element={<Book />} />

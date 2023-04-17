@@ -5,8 +5,10 @@ import UserContext from "../../../context/userContext";
 import GroupContext from "../../../context/groupContext";
 import { useGroupId } from "../../../hooks/api/useGroupId";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 export function Options({ display, role, setEnable }) {
+  const navigate = useNavigate()
  const { userProfileData } = useContext(UserContext);
  const { groupData, setGroupData } = useContext(GroupContext);
  const userId = userProfileData?.user?.id;
@@ -39,10 +41,16 @@ export function Options({ display, role, setEnable }) {
   });
  }
 
+ function navigateEditGroup(){
+  navigate(`/group/${groupId}/edit?options=infos`)
+ }
+
  return (
   <OptionsDiv displayDiv={display}>
    <ul>
-    {(role === "owner" || role === "administrator") && <li>Editar Grupo</li>}
+    {(role === "owner" || role === "administrator") && (
+    <li onClick={() => navigateEditGroup()} >Editar Grupo</li>
+    )}
     {(role === "owner" || role === "administrator") && <li>Solicitações</li>}
     {(role === "member" || role === "administrator") && (
      <li onClick={() => leaveRequest()}>Sair do grupo</li>
