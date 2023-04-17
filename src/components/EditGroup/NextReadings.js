@@ -10,8 +10,10 @@ export function NextReadings() {
   <NextReadingsDiv>
    <h3>Proximas Leituras</h3>
    <ul>
+      {nextReadings.length === 0 && <p>Não há proximas leituras</p>}
     {nextReadings?.map((e) => {
         return <UserBook
+        key={e.id}
         id={e.id}
         urlImage={e.urlImage}
         title={e.title}

@@ -11,57 +11,59 @@ import { useGroupId } from "../../hooks/api/useGroupId";
 
 export function EditGroupBox() {
  const { groupId } = useParams();
- const navigate = useNavigate()
+ const navigate = useNavigate();
 
  const { userProfileData } = useContext(UserContext);
  const { setGroupData, groupData } = useContext(GroupContext);
 
  const { closeOpenGroup } = useCloseOpenGroup();
- const {editGroupLoading,changeGroupInfos} = useEditGroup();
- const {getGroupById } = useGroupId(groupId, false);
+ const { editGroupLoading, changeGroupInfos } = useEditGroup();
+ const { getGroupById } = useGroupId(groupId, false);
 
  const [name, setName] = useState(groupData?.name);
  const [description, setDescription] = useState(groupData?.description);
  const [about, setAbout] = useState(groupData?.about);
  const [urlImage, setUrlImage] = useState(groupData?.urlImage);
 
- const initialName = useRef(name)
-  const initialUrl = useRef(urlImage);
-  
-  const permissions = ["edit_group_description"];
-  
-  const token = userProfileData.token;
-  const status = groupData?.status;
+ const initialName = useRef(name);
+ const initialUrl = useRef(urlImage);
 
+ const permissions = ["edit_group_description"];
+
+ const token = userProfileData.token;
+ const status = groupData?.status;
 
  async function submit(e) {
   e.preventDefault();
   const body = {
-    name,
-    description,
-    about,
-    urlImage,
-    status
-
+   name,
+   description,
+   about,
+   urlImage,
+   status,
+  };
+  if (initialName.current !== name) {
+   permissions.push("edit_group_name");
   }
-  if(initialName.current !== name){
-    permissions.push("edit_group_name")
+  if (initialUrl.current !== urlImage) {
+   permissions.push("edit_group_image");
   }
-  if(initialUrl.current !== urlImage){
-    permissions.push("edit_group_image")
-  }
-
   try {
-    await changeGroupInfos(body, token, groupId, permissions.toString().replace(",", ", "));
-    navigate(`/explore/group/${groupId}`)
+   await changeGroupInfos(
+    body,
+    token,
+    groupId,
+    permissions.toString().replace(",", ", ")
+   );
+   navigate(`/explore/group/${groupId}`);
   } catch (error) {
-    setName(initialName.current)
-    setUrlImage(initialUrl.current);
-    Swal.fire(
-      'Ação não permitida',
-      'Você não possui permissão para essa ação',
-      'warning'
-    )
+   setName(initialName.current);
+   setUrlImage(initialUrl.current);
+   Swal.fire(
+    "Ação não permitida",
+    "Você não possui permissão para essa ação",
+    "warning"
+   );
   }
  }
 
@@ -71,11 +73,11 @@ export function EditGroupBox() {
    const group = await getGroupById(groupId);
    setGroupData(group);
   } catch (error) {
-    Swal.fire(
-      'Ação não permitida',
-      'Você não possui permissão para essa ação',
-      'warning'
-    )
+   Swal.fire(
+    "Ação não permitida",
+    "Você não possui permissão para essa ação",
+    "warning"
+   );
   }
  }
  return (
@@ -139,10 +141,14 @@ export function EditGroupBox() {
         )}
 
         {groupData?.status === "OPEN" && (
-         <button onClick={() => requestCloseOpen()}>Fechar Grupo</button>
+         <div onClick={() => requestCloseOpen()} className="button-close-open">
+          Fechar Grupo
+         </div>
         )}
         {groupData?.status === "CLOSED" && (
-         <button onClick={() => requestCloseOpen()}>Abrir Grupo</button>
+         <div onClick={() => requestCloseOpen()} className="button-close-open">
+          Abrir Grupo
+         </div>
         )}
        </div>
       </LabelInputDiv>
@@ -231,7 +237,7 @@ const LabelInputDiv = styled.div`
    font-size: 2rem;
   }
 
-  button {
+  .button-close-open {
    font-family: "Raleway", sans-serif;
    border: none;
    background-color: ${(props) => props.colorButton};
@@ -239,6 +245,9 @@ const LabelInputDiv = styled.div`
    height: 40px;
    width: 150px;
    margin-left: 2rem;
+   display: flex;
+   align-items: center;
+   justify-content: center;
    border-radius: 5px;
    color: #ffffff;
    cursor: pointer;

@@ -8,8 +8,17 @@ async function createBookList(body, token, groupId, permision){
     return response.data;
 }
 
+async function updateBookList(body, token, groupId, permision){
+    const config = {
+        headers: { Authorization: `Bearer ${token}` },
+       };
+    const response = await api.put(`/book-list/${groupId}?permissions=${permision}`, body, config);
+    return response.data;
+}
+
 
 
 export const bookListApi = {
-    createBookList
+    createBookList,
+    updateBookList
 }

@@ -16,3 +16,19 @@ export function useCreateBookList() {
   createBookList,
  };
 }
+
+export function useUpdateBookList() {
+    const {
+     data: updateBookListData,
+     loading: updateBookListLoading,
+     error: updateBookListError,
+     task: updateBookList,
+    } = useAsync(bookListApi.updateBookList, false);
+   
+    return {
+     updateBookListData,
+     updateBookListLoading,
+     updateBookListError,
+     updateBookList,
+    };
+   }

@@ -8,14 +8,19 @@ import { EditGroupBox } from "../../components/EditGroup/EditGroupInfos";
 import { useParams } from "react-router-dom";
 import { EditReadinListBox } from "../../components/EditGroup/EditReadingList";
 import { AddBookBox } from "../../components/EditGroup/AddBookBox";
+import { BackgroundFaded } from "../../components/Utils/BackgroundFaded";
+import { useContext } from "react";
+import BackgroundContext from "../../context/backgroundContext";
 
 export function EditGroup(){
     const urlQuery = useQuery();
     const selected = urlQuery.get("options");
     const {groupId} = useParams()
+    const {enable} = useContext(BackgroundContext)
     
     return(
         <>
+        <BackgroundFaded />
         <Header />
         <EditGroupSection>
             <h1> Editar Grupo</h1>

@@ -2,19 +2,27 @@ import { useContext } from "react";
 import styled from "styled-components";
 import GroupContext from "../../context/groupContext";
 import { UserBook } from "../User/UserBook";
+import BackgroundContext from "../../context/backgroundContext";
 
 export function CurrentReading() {
  const { groupData } = useContext(GroupContext);
+ const {enable, setEnable} = useContext(BackgroundContext)
  const currentReading = groupData?.CurrentReading;
+ function changeCurrent(){
+    setEnable(!enable)
+ }
  return (
   <CurrentReadingDiv>
-   <h3>Leitura Atual</h3>
+   <h3 onClick={() => changeCurrent()}>Leitura Atual</h3>
    <ul>
-    <UserBook
-     id={currentReading?.id}
-     urlImage={currentReading?.urlImage}
-     title={currentReading?.title}
-    />
+    {!currentReading.id && <p>Não há leitura atual</p>}
+    {currentReading.id && (
+     <UserBook
+      id={currentReading?.id}
+      urlImage={currentReading?.urlImage}
+      title={currentReading?.title}
+     />
+    )}
    </ul>
   </CurrentReadingDiv>
  );
@@ -29,9 +37,10 @@ const CurrentReadingDiv = styled.div`
   font-size: 1.8rem;
   margin-top: 2rem;
   margin-bottom: 1rem;
+  cursor: pointer;
  }
 
- ul{
-    display: flex;
+ ul {
+  display: flex;
  }
 `;
