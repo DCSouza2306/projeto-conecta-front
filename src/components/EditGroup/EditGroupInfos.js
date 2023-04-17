@@ -1,17 +1,19 @@
 import styled from "styled-components";
 import ButtonStyled from "../Layout/ButtonStyled";
 import { useState } from "react";
-import { useCreateGroup } from "../../hooks/api/useGroups";
+import { useCloseOpenGroup, useCreateGroup } from "../../hooks/api/useGroups";
 import { useContext } from "react";
 import UserContext from "../../context/userContext";
 import Swal from "sweetalert2";
 import { useParams } from "react-router-dom";
 import GroupContext from "../../context/groupContext";
+import { useGroupId } from "../../hooks/api/useGroupId";
 
 export function EditGroupBox() {
  const { groupId } = useParams();
  const { setGroupData, groupData } = useContext(GroupContext);
- console.log(groupData);
+ const { closeOpenLoading, closeOpenGroup } = useCloseOpenGroup();
+ const {getGroupById } = useGroupId(groupId, false);
  const [name, setName] = useState(groupData?.name);
  const [description, setDescription] = useState(groupData?.description);
  const [about, setAbout] = useState(groupData?.about);
@@ -24,23 +26,15 @@ export function EditGroupBox() {
 
  async function submit(e) {
   e.preventDefault();
-  const body = {
-   name,
-   description,
-   about,
-   urlImage,
-   status: "OPEN",
-  };
+ }
 
+ async function requestCloseOpen() {
   try {
-   await createGroup(body, token);
-   alert("deu certinho");
+   await closeOpenGroup(token, groupId, "close_open_group");
+   const group = await getGroupById(groupId);
+   setGroupData(group);
   } catch (error) {
-   Swal.fire({
-    icon: "error",
-    title: "Oops...",
-    text: `${error.response.data}`,
-   });
+   alert("deu ruim");
   }
  }
  return (
@@ -91,17 +85,24 @@ export function EditGroupBox() {
        ></textarea>
       </LabelInputDiv>
 
-      <LabelInputDiv colorButton={groupData?.status == "OPEN" ? "#E95A5A" : "#83B147"}>
+      <LabelInputDiv
+       colorButton={groupData?.status == "OPEN" ? "#E95A5A" : "#83B147"}
+      >
        <h4>Status do grupo</h4>
        <div className="status-group-options">
-        {groupData?.status === "OPEN" &&  <p className="group-status"> Aberto</p>}
-        {groupData?.status === "CLOSED" &&  <p className="group-status"> Fechado</p>}
+        {groupData?.status === "OPEN" && (
+         <p className="group-status"> Aberto</p>
+        )}
+        {groupData?.status === "CLOSED" && (
+         <p className="group-status"> Fechado</p>
+        )}
 
-        {groupData?.status === "OPEN" &&  <button>Fechar Grupo</button>}
-        {groupData?.status === "CLOSED" &&  <button>Abrir Grupo</button>}
-
-       
-        
+        {groupData?.status === "OPEN" && (
+         <button onClick={() => requestCloseOpen()}>Fechar Grupo</button>
+        )}
+        {groupData?.status === "CLOSED" && (
+         <button onClick={() => requestCloseOpen()}>Abrir Grupo</button>
+        )}
        </div>
       </LabelInputDiv>
      </div>
@@ -129,8 +130,6 @@ const EditGroupBoxDiv = styled.div`
   .form-group-left {
    margin-top: 0;
   }
-
- 
 
   #open {
    width: 50px;
@@ -184,24 +183,24 @@ const LabelInputDiv = styled.div`
  margin-top: 2rem;
 
  .status-group-options {
-   display: flex;
-   align-items: flex-end;
-   margin-top: 0.5rem;
-   .group-status {
-    font-size: 2rem;
-   }
-
-   button{
-    font-family: "Raleway", sans-serif;
-    border: none;
-    background-color: ${props => props.colorButton};
-    font-size: 1.3rem;
-    height: 40px;
-    width: 150px;
-    margin-left: 2rem;
-    border-radius: 5px;
-    color: #ffffff;
-    cursor: pointer;
-   }
+  display: flex;
+  align-items: flex-end;
+  margin-top: 0.5rem;
+  .group-status {
+   font-size: 2rem;
   }
+
+  button {
+   font-family: "Raleway", sans-serif;
+   border: none;
+   background-color: ${(props) => props.colorButton};
+   font-size: 1.3rem;
+   height: 40px;
+   width: 150px;
+   margin-left: 2rem;
+   border-radius: 5px;
+   color: #ffffff;
+   cursor: pointer;
+  }
+ }
 `;

@@ -15,6 +15,7 @@ export function ButtonsGroup({
  groupId,
  getGroupById
 }) {
+  
  const { requestLoading, requestError, requestMember } = useRequest();
  const { userProfileData } = useContext(UserContext);
  const { setGroupData, groupData } = useContext(GroupContext);
@@ -37,7 +38,6 @@ export function ButtonsGroup({
    const groupData = await getGroupById(groupId);
     setGroupData(groupData);
   } catch (error) {
-   console.log(error);
   }
  }
 
@@ -57,7 +57,7 @@ export function ButtonsGroup({
      Opções <AiFillCaretDown />{" "}
     </ButtonRequest>
    )}
-   {groupStatus === "CLOSED" && (
+   {groupStatus === "CLOSED" && status !== "APROVED" && (
     <ButtonRequest disabled={true}>Grupo Fechado</ButtonRequest>
    )}
    <Options display={enable} role={role} setEnable={setEnable} />

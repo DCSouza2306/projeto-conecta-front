@@ -32,3 +32,17 @@ export function useCreateGroup() {
     createGroup,
   };
  }
+
+ export function useCloseOpenGroup(){
+  const{
+    loading: closeOpenLoading,
+    error: closeOpenError,
+    task: closeOpenGroup
+  } = useAsync(groupApi.closeOpenGroup, false);
+
+  return{
+    closeOpenLoading,
+    closeOpenError,
+    closeOpenGroup
+  }
+ }

@@ -18,4 +18,12 @@ async function createGroup(body, token){
     return response.data
 }
 
-export const groupApi = { getGroups, getGroupById, createGroup };
+async function closeOpenGroup(token, groupId, permision){
+    const config = {
+        headers: { Authorization: `Bearer ${token}` },
+       };
+    const response = await api.put(`/group/close-open/${groupId}?permissions[]=${permision}`, {}, config)
+    return response.data
+}
+
+export const groupApi = { getGroups, getGroupById, createGroup, closeOpenGroup };
