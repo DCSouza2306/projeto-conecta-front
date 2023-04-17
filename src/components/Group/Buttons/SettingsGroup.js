@@ -58,8 +58,8 @@ const OptionsDiv = styled.div`
  max-height: ${(props) => (props.displayDiv ? "110px" : "50px")};
  background-color: #5c548c;
  position: absolute;
- right: 388px;
- top: 250px;
+ right: 0;
+ top: 6rem;
  border-radius: 0 0 50px 50px;
  color: #ffffff;
  transition: height 1s, transform 1s;

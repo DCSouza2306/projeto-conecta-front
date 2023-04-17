@@ -75,6 +75,7 @@ const GroupSection = styled(Container)`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: relative;
   img {
    width: 120px;
    height: 120px;
